@@ -978,12 +978,14 @@
         }
 
     </style>
+    <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
     <header>
         <a href="#" class="logo"><span class="logo-bold">coinbase</span> <span class="logo-light">INSTITUTE</span></a>
-        <nav>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav">Menu</button>
+        <nav id="primaryNav" aria-label="Main navigation">
             <ul>
                 <li><a href="https://www.coinbase.com/public-policy/advocacy/united-states">United States</a></li>
                 <li><a href="https://www.coinbase.com/public-policy/advocacy/international">International</a></li>
@@ -995,9 +997,9 @@
     </header>
 
     <!-- Reading Modal -->
-    <div class="reading-modal" id="readingModal">
+    <div class="reading-modal" id="readingModal" role="dialog" aria-modal="true" aria-label="Article" tabindex="-1">
         <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
+            <button class="modal-close" id="modalClose" aria-label="Close article">&times;</button>
             <div class="modal-header" id="modalHeader"></div>
             <div class="modal-body" id="modalBody"></div>
         </div>
@@ -1007,7 +1009,7 @@
         <div class="hero">
         <div class="hero-glow"></div>
         <h1>Trusted Policy Insights. Rigorous Research.</h1>
-        <p>The Coinbase Institute is the most trusted source of policy research on the global crypto economy.<br>Our work supports sound policy, advances innovation, and helps promote economic freedom worldwide.</p>
+        <p>The Coinbase Institute is the most trusted source of policy research on the global crypto economy.<br> Our work supports sound policy, advances innovation, and helps promote economic freedom worldwide.</p>
     </div>
 
         <div class="carousel-wrapper" id="featuredCarousel">
@@ -1041,8 +1043,8 @@
             </div>
             
             <div class="carousel-controls" style="z-index: 20;">
-                <button class="carousel-btn" id="prevBtn" style="pointer-events: auto;">&#8592;</button>
-                <button class="carousel-btn" id="nextBtn" style="pointer-events: auto;">&#8594;</button>
+                <button class="carousel-btn" id="prevBtn" aria-label="Previous featured paper" style="pointer-events: auto;">&#8592;</button>
+                <button class="carousel-btn" id="nextBtn" aria-label="Next featured paper" style="pointer-events: auto;">&#8594;</button>
             </div>
         </div>
 
@@ -1052,17 +1054,19 @@
                 <p>Trusted policy insights and rigorous crypto research delivered straight to your inbox.</p>
             </div>
             <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
-                <input type="email" placeholder="Enter your email address" required>
+                <input type="email" placeholder="Enter your email address" aria-label="Email address" autocomplete="email" required>
                 <button type="submit">Subscribe</button>
             </form>
         </div>
 
         <div class="search-section">
-            <input type="text" id="searchInput" placeholder="Search research, insights, and news...">
+            <input type="search" id="searchInput" aria-label="Search research, insights, and news" placeholder="Search research, insights, and news...">
         </div>
         
         <div class="content-layout">
-            <div class="checkbox-controls">
+            <details class="checkbox-controls" id="researchFilters" open>
+                <summary class="filter-summary">Filter research <span id="filterCount"></span></summary>
+                <div class="filter-fields">
                 <div class="filter-group">
                     <h4>Category</h4>
                     <div class="checkbox-list">
@@ -1087,7 +1091,8 @@
                         <label class="filter-pill"><input type="checkbox" value="AI" class="tag-cb"> <span data-tag="AI">AI</span></label><label class="filter-pill"><input type="checkbox" value="Banking" class="tag-cb"> <span data-tag="Banking">Banking</span></label><label class="filter-pill"><input type="checkbox" value="Base" class="tag-cb"> <span data-tag="Base">Base</span></label><label class="filter-pill"><input type="checkbox" value="Bitcoin" class="tag-cb"> <span data-tag="Bitcoin">Bitcoin</span></label><label class="filter-pill"><input type="checkbox" value="Consumer Education" class="tag-cb"> <span data-tag="Consumer Education">Consumer Education</span></label><label class="filter-pill"><input type="checkbox" value="Custody" class="tag-cb"> <span data-tag="Custody">Custody</span></label><label class="filter-pill"><input type="checkbox" value="DeFi" class="tag-cb"> <span data-tag="DeFi">DeFi</span></label><label class="filter-pill"><input type="checkbox" value="Energy" class="tag-cb"> <span data-tag="Energy">Energy</span></label><label class="filter-pill"><input type="checkbox" value="Financial Inclusion" class="tag-cb"> <span data-tag="Financial Inclusion">Financial Inclusion</span></label><label class="filter-pill"><input type="checkbox" value="G20" class="tag-cb"> <span data-tag="G20">G20</span></label><label class="filter-pill"><input type="checkbox" value="Housing" class="tag-cb"> <span data-tag="Housing">Housing</span></label><label class="filter-pill"><input type="checkbox" value="Identity/KYC" class="tag-cb"> <span data-tag="Identity/KYC">Identity/KYC</span></label><label class="filter-pill"><input type="checkbox" value="India" class="tag-cb"> <span data-tag="India">India</span></label><label class="filter-pill"><input type="checkbox" value="Market Structure" class="tag-cb"> <span data-tag="Market Structure">Market Structure</span></label><label class="filter-pill"><input type="checkbox" value="NFTs" class="tag-cb"> <span data-tag="NFTs">NFTs</span></label><label class="filter-pill"><input type="checkbox" value="National Security" class="tag-cb"> <span data-tag="National Security">National Security</span></label><label class="filter-pill"><input type="checkbox" value="Payments" class="tag-cb"> <span data-tag="Payments">Payments</span></label><label class="filter-pill"><input type="checkbox" value="Policy/Regulation" class="tag-cb"> <span data-tag="Policy/Regulation">Policy/Regulation</span></label><label class="filter-pill"><input type="checkbox" value="Privacy" class="tag-cb"> <span data-tag="Privacy">Privacy</span></label><label class="filter-pill"><input type="checkbox" value="Protocols" class="tag-cb"> <span data-tag="Protocols">Protocols</span></label><label class="filter-pill"><input type="checkbox" value="Public Tokens" class="tag-cb"> <span data-tag="Public Tokens">Public Tokens</span></label><label class="filter-pill"><input type="checkbox" value="Quantum" class="tag-cb"> <span data-tag="Quantum">Quantum</span></label><label class="filter-pill"><input type="checkbox" value="Remittances" class="tag-cb"> <span data-tag="Remittances">Remittances</span></label><label class="filter-pill"><input type="checkbox" value="Security Tokens" class="tag-cb"> <span data-tag="Security Tokens">Security Tokens</span></label><label class="filter-pill"><input type="checkbox" value="Settlement" class="tag-cb"> <span data-tag="Settlement">Settlement</span></label><label class="filter-pill"><input type="checkbox" value="Stablecoins" class="tag-cb"> <span data-tag="Stablecoins">Stablecoins</span></label><label class="filter-pill"><input type="checkbox" value="Staking" class="tag-cb"> <span data-tag="Staking">Staking</span></label><label class="filter-pill"><input type="checkbox" value="Systemic Risk" class="tag-cb"> <span data-tag="Systemic Risk">Systemic Risk</span></label><label class="filter-pill"><input type="checkbox" value="Tax" class="tag-cb"> <span data-tag="Tax">Tax</span></label><label class="filter-pill"><input type="checkbox" value="Tokenization" class="tag-cb"> <span data-tag="Tokenization">Tokenization</span></label><label class="filter-pill"><input type="checkbox" value="Wallets" class="tag-cb"> <span data-tag="Wallets">Wallets</span></label>
                     </div>
                 </div>
-            </div>
+                </div>
+            </details>
 
             <div class="research-grid" id="grid">
 
@@ -1749,6 +1754,18 @@
     </footer>
 
     <script>
+        const mobileLayout = window.matchMedia('(max-width: 768px)');
+        const filterLayout = window.matchMedia('(max-width: 900px)');
+        const filterPanel = document.getElementById('researchFilters');
+        const syncFilters = () => { filterPanel.open = !filterLayout.matches; };
+        syncFilters(); filterLayout.addEventListener('change', syncFilters);
+        const menuToggle = document.getElementById('menuToggle');
+        const primaryNav = document.getElementById('primaryNav');
+        function closeMenu() { primaryNav.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded', 'false'); }
+        menuToggle.addEventListener('click', () => { menuToggle.setAttribute('aria-expanded', String(primaryNav.classList.toggle('is-open'))); });
+        primaryNav.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+        mobileLayout.addEventListener('change', closeMenu);
 // Advanced Carousel Logic - Infinite Loop & Longer Duration
         const track = document.getElementById('carouselTrack');
         let slides = document.querySelectorAll('.carousel-slide');
@@ -1786,11 +1803,15 @@
         const originalCount = slides.length - 2; // Subtract the 2 clones
         
         for(let i = 0; i < originalCount; i++) {
-            const dot = document.createElement('div');
+            const dot = document.createElement('button');
+            dot.type = 'button'; dot.setAttribute('aria-label', `Show featured paper ${i + 1}`);
             dot.className = 'indicator' + (i === 0 ? ' active' : '');
             dot.addEventListener('click', () => {
                 if(isTransitioning) return;
-                goToSlide(i + 1); // Offset by 1 for the clone
+                track.style.transition = 'transform 0.5s ease-in-out';
+                currentIndex = i + 1;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateIndicators(); resetInterval();
             });
             indicatorsContainer.appendChild(dot);
         }
@@ -1814,6 +1835,8 @@
             
             // 2. Add it to the current slide
             slides[currentIndex].classList.add('active');
+            syncSlideSize();
+            slides.forEach((slide, index) => { slide.inert = index !== currentIndex; });
             
             // 3. PREVENT TEXT GLITCH: If we are on a clone, animate the real slide simultaneously 
             // so the text is fully visible the moment the carousel silently snaps back
@@ -1824,6 +1847,28 @@
             }
         }
 
+        function syncSlideSize() { track.style.height = mobileLayout.matches ? `${slides[currentIndex].offsetHeight}px` : ''; }
+        slides.forEach((slide, index) => {
+            const paragraph = slide.querySelector('p'); paragraph.id = `featured-summary-${index}`;
+            const toggle = document.createElement('button');
+            toggle.type = 'button'; toggle.className = 'summary-toggle'; toggle.textContent = 'Read summary';
+            toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-controls', paragraph.id);
+            toggle.addEventListener('click', () => {
+                const expanded = paragraph.classList.toggle('is-expanded'); toggle.setAttribute('aria-expanded', String(expanded));
+                toggle.textContent = expanded ? 'Less summary' : 'Read summary'; syncSlideSize();
+            });
+            paragraph.after(toggle); slide.inert = index !== currentIndex;
+        });
+        const slideObserver = new ResizeObserver(syncSlideSize); slides.forEach(slide => slideObserver.observe(slide));
+        mobileLayout.addEventListener('change', () => { syncSlideSize(); resetInterval(); });
+        let touchStart;
+        track.addEventListener('touchstart', event => { touchStart = event.touches.length === 1 ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : null; }, { passive: true });
+        track.addEventListener('touchend', event => {
+            if (!touchStart) return;
+            const dx = event.changedTouches[0].clientX - touchStart.x, dy = event.changedTouches[0].clientY - touchStart.y;
+            if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) { dx < 0 ? nextSlide() : prevSlide(); }
+            touchStart = null;
+        }, { passive: true });
         function nextSlide() {
             if (isTransitioning) return;
             track.style.transition = 'transform 0.5s ease-in-out';
@@ -1841,11 +1886,13 @@
         }
 
         // 3. The magic trick: silently snap back when hitting a clone
-        track.addEventListener('transitionstart', () => {
+        track.addEventListener('transitionstart', (event) => {
+            if (event.target !== track || event.propertyName !== 'transform') return;
             isTransitioning = true;
         });
 
-        track.addEventListener('transitionend', () => {
+        track.addEventListener('transitionend', (event) => {
+            if (event.target !== track || event.propertyName !== 'transform') return;
             isTransitioning = false;
             
             if (slides[currentIndex].id === 'first-clone') {
@@ -1859,6 +1906,7 @@
                 currentIndex = slides.length - 2; // Jump back to real last slide
                 track.style.transform = `translateX(-${currentIndex * 100}%)`;
             }
+            updateIndicators();
         });
 
         // 4. Timer setup
@@ -1868,7 +1916,7 @@
         let slideInterval;
         function startInterval() {
             clearInterval(slideInterval); // Add this line to prevent overlapping timers!
-            slideInterval = setInterval(nextSlide, 25000); 
+            if (!mobileLayout.matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) slideInterval = setInterval(nextSlide, 25000);
         }
 
         function resetInterval() {
@@ -1894,6 +1942,8 @@
             const selectedGeos = Array.from(geoCbs).filter(cb => cb.checked).map(cb => cb.value);
             const selectedTags = Array.from(tagCbs).filter(cb => cb.checked).map(cb => cb.value.toLowerCase());
             const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
+            const selectedCount = selectedCats.length + selectedGeos.length + selectedTags.length;
+            document.getElementById('filterCount').textContent = selectedCount ? `(${selectedCount} selected)` : '';
 
             cards.forEach(card => {
                 const cardCat = card.getAttribute('data-category') || '';
@@ -1929,8 +1979,26 @@
         const modalClose = document.getElementById('modalClose');
         const modalHeader = document.getElementById('modalHeader');
         const modalBody = document.getElementById('modalBody');
+        let articleTrigger, previousOverflow;
+        function closeArticle() {
+            modal.classList.remove('active'); document.body.style.overflow = previousOverflow || '';
+            document.querySelector('main').inert = false; document.querySelector('header').inert = false; document.querySelector('footer').inert = false;
+            articleTrigger?.focus();
+        }
+        modal.addEventListener('keydown', event => {
+            if (event.key === 'Escape') { event.preventDefault(); closeArticle(); }
+            if (event.key !== 'Tab') return;
+            const focusable = [...modal.querySelectorAll('button, a[href], input, [tabindex="0"]')];
+            const first = focusable[0], last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+            else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        });
 
         document.querySelectorAll('.card[data-category="notes-and-news"]').forEach(card => {
+            if (card.tagName !== 'A') {
+                card.tabIndex = 0; card.setAttribute('role', 'button');
+                card.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); card.click(); } });
+            }
             card.addEventListener('click', function(e) {
                 e.preventDefault(); // Stop the card from navigating away
                 
@@ -1952,21 +2020,17 @@
 
                 // Show Modal and lock background scrolling
                 modal.classList.add('active');
+                articleTrigger = this; previousOverflow = document.body.style.overflow;
+                document.querySelector('main').inert = true; document.querySelector('header').inert = true; document.querySelector('footer').inert = true;
+                modal.querySelector('.modal-content').scrollTop = 0; modalClose.focus();
                 document.body.style.overflow = 'hidden'; 
             });
         });
 
-        // Close the modal when the "X" is clicked
-        modalClose.addEventListener('click', () => {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore background scrolling
-        });
-
-        // Close the modal if the user clicks in the dark background outside the white box
+        modalClose.addEventListener('click', closeArticle);
         modal.addEventListener('click', (e) => {
             if(e.target === modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                closeArticle();
             }
         });
     </script>
