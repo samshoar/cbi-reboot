@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coinbase Institute | Research & Policy</title>
+    <style>
+        
+        /* Coinbase Sans Custom Fonts */
+        @font-face {
+            font-family: 'Coinbase Sans';
+            src: url('Coinbase_Sans-Regular-web-1.32.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Coinbase Sans';
+            src: url('Coinbase_Text-Medium-web-1.32.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Coinbase Sans';
+            src: url('Coinbase_Sans-Bold-web-1.32.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            /* Brand Guidelines Colors */
+            --primary: #000000;
+            --bg-color: #ffffff;
+            --text-secondary: #6e6e73;
+            --accent: #0052FF;
+            --gold-accent: #CFB53B; 
+            --silver-bg: #F5F5F7;
+            --border-color: #e5e5ea;
+            
+            --font-sans: 'Coinbase Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: 'Coinbase Sans', Georgia, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--primary);
+            background-color: var(--bg-color);
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+            background-color: #fbfbfd;
+            background-image: radial-gradient(circle at 50% 0%, #ffffff 0%, #fbfbfd 100%);
+            background-attachment: fixed;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: var(--primary);
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+            line-height: 1;
+        }
+        
+        .logo .logo-bold {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 2.25rem;
+            letter-spacing: -0.04em;
+        }
+
+        .logo .logo-light {
+            font-family: var(--font-sans);
+            font-weight: 400; 
+            font-size: 1.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem 2rem; 
+        }
+
+        .hero {
+            position: relative !important;
+            margin: 0 auto 1.5rem auto !important;
+            max-width: 100% !important; 
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            padding: 0 0 1rem 0 !important; 
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%; left: -10%; right: -10%; bottom: -10%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 82, 255, 0.08) 0%, transparent 60%);
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(40px);
+            pointer-events: none;
+        }
+        .hero h1 {
+            width: 100% !important;
+            text-align: center !important;
+            font-size: 3 rem !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.04em !important;
+            color: #323235 !important;
+            margin-bottom: 0.75rem !important; 
+            line-height: 1.05 !important;
+            display: block !important;
+        }
+        .hero p {
+            width: 100% !important;
+            text-align: center !important;
+            font-size: 2 rem !important;
+            color: #515154 !important;
+            max-width: 100% !important; 
+            margin: 0 auto !important;
+            display: block !important;
+        }
+
+        /* -- INTERACTIVE CAROUSEL ENHANCEMENTS -- */
+        .carousel-wrapper {
+            background: #fbfbfd !important;
+            border-radius: 16px !important;
+            margin-bottom: 1.5rem !important; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05) !important;
+            border: 1px solid rgba(0,0,0,0.06) !important;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.4s ease, border-color 0.4s ease !important;
+        }
+
+        .carousel-wrapper:hover {
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.08) !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .carousel-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(200, 200, 200, 0.2) 0%, transparent 40%);
+            animation: rotateOrb 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes rotateOrb {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            padding: 3rem 3rem; 
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .carousel-slide h2 {
+            font-size: 2.2rem;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: #000000 !important; 
+            font-weight: 700 !important;
+        }
+
+        .carousel-slide p {
+            font-size: 1.05rem;
+            color: #515154 !important;
+            margin-bottom: 1.5rem;
+            max-width: 100%;
+        }
+
+        .carousel-slide a.btn {
+            display: inline-block;
+            background: #0052FF !important;
+            color: #ffffff !important;
+            padding: 0.6rem 1.25rem;
+            text-decoration: none;
+            border-radius: 8px !important;
+            font-weight: 500;
+            width: fit-content;
+            transition: background 0.2s;
+        }
+
+        .carousel-slide a.btn:hover {
+            background: #0040cc !important;
+        }
+
+        .carousel-slide .category-tag {
+            background: transparent !important;
+            color: var(--accent) !important;
+            border: none !important;
+            padding: 0 !important;
+            margin-bottom: 0.75rem !important;
+            font-weight: 700 !important;
+            font-size: 0.85rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+        }
+
+        /* Animate Content within active slide */
+        .carousel-slide h2, .carousel-slide p, .carousel-slide a.btn, .carousel-slide .category-tag {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .carousel-slide.active h2, .carousel-slide.active p, .carousel-slide.active a.btn, .carousel-slide.active .category-tag {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .carousel-slide.active .category-tag { transition-delay: 0.1s; }
+        .carousel-slide.active h2 { transition-delay: 0.2s; }
+        .carousel-slide.active p { transition-delay: 0.3s; }
+        .carousel-slide.active a.btn { transition-delay: 0.4s; }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 3rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 20;
+        }
+
+        .carousel-btn {
+            background: #e5e5ea !important;
+            border: none;
+            color: #000000 !important;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+
+        .carousel-btn:hover {
+            background: #d1d1d6 !important;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 1.8rem;
+            left: 3rem; 
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .indicator:hover {
+            background: rgba(0,0,0,0.4);
+        }
+
+        .indicator.active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--accent);
+        }
+
+        .carousel-inline-image {
+            width: 100%;
+            height: 480px;
+            background-color: transparent;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: none;
+            box-shadow: none;
+            mix-blend-mode: darken;
+        }
+
+        /* --- LIGHT THEME SUBSCRIBE SECTION --- */
+        .subscribe-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%) !important;
+            border: 1px solid rgba(0, 82, 255, 0.1) !important;
+            border-radius: 12px !important;
+            padding: 1.25rem 2.5rem !important;
+            margin-bottom: 1.5rem !important; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03) !important;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle blue glow in the background instead of gold */
+        .subscribe-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%; left: -10%;
+            width: 300px; height: 300px;
+            background: var(--accent);
+            filter: blur(120px);
+            opacity: 0.08; 
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .subscribe-text {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .subscribe-text h3 {
+            color: var(--primary) !important;
+            font-family: var(--font-sans) !important;
+            font-weight: 700 !important;
+            font-size: 1.15rem !important;
+            margin-bottom: 0.1rem !important;
+        }
+
+        .subscribe-text p {
+            color: var(--text-secondary) !important;
+            font-size: 0.9rem !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            margin: 0 !important;
+        }
+
+        .subscribe-form { 
+            flex: 0 0 400px;
+            display: flex;
+            gap: 0.5rem;
+            margin: 0 !important;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Light themed input field */
+        .subscribe-form input { 
+            background: #ffffff !important; 
+            border: 1px solid var(--border-color) !important;
+            color: var(--primary) !important;
+            flex-grow: 1;
+            padding: 0.6rem 1rem !important;
+            border-radius: 8px !important;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .subscribe-form input:focus { 
+            border-color: var(--accent) !important; 
+            box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.1) !important;
+        }
+
+        .subscribe-form button {
+            background: var(--accent) !important;
+            color: #ffffff !important;
+            padding: 0 1.25rem !important;
+            border: none;
+            border-radius: 8px !important;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .subscribe-form button:hover { 
+            background: #0040cc !important; 
+        }
+
+        .search-section {
+            margin-bottom: 2rem; 
+            display: flex;
+            justify-content: center;
+            padding: 0 2rem;
+        }
+        .search-section input {
+            width: 100%;
+            max-width: 600px;
+            padding: 0.85rem 1.5rem;
+            font-size: 1.05rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            outline: none;
+            transition: all 0.3s;
+            font-family: var(--font-sans);
+        }
+        .search-section input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(0, 82, 255, 0.15);
+        }
+
+        .content-layout {
+            display: flex;
+            gap: 1.5rem; 
+            align-items: flex-start;
+        }
+
+        /* Checkbox Filters */
+        .checkbox-controls {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem; 
+            color: var(--primary);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem; 
+            flex: 0 0 260px; 
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        
+        .checkbox-controls::-webkit-scrollbar { width: 6px; }
+        .checkbox-controls::-webkit-scrollbar-track { background: transparent; }
+        .checkbox-controls::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+        
+        .filter-group h4 {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .checkbox-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem; 
+        }
+        
+        .filter-pill { display: inline-block; margin: 0; }
+        .filter-pill input { display: none; }
+        
+        .filter-pill span {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: var(--silver-bg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            user-select: none;
+        }
+        
+        .filter-pill:hover span { background: #e5e5ea; color: var(--primary); }
+        .filter-pill input:checked + span { background: var(--primary); color: #ffffff; }
+
+        /* Types (Categories) - Shades of Blue (Light to Dark) */
+        .filter-pill input[value="notes-and-news"]:checked + span { background: #BFD4FF; color: #002BA0; border-color: #BFD4FF; } 
+        .filter-pill input[value="explainers"]:checked + span { background: #6991FF; color: #ffffff; border-color: #6991FF; }
+        .filter-pill input[value="insights"]:checked + span { background: #0052FF; color: #ffffff; border-color: #0052FF; }
+        .filter-pill input[value="research"]:checked + span { background: #002BA0; color: #ffffff; border-color: #002BA0; } 
+
+        /* Countries (Regions) */
+        .filter-pill input[value="us"].geo-cb:checked + span { background: #002147; color: #ffffff; border-color: #002147; } /* US Blue */
+        .filter-pill input[value="uk"].geo-cb:checked + span { background: #C8102E; color: #ffffff; border-color: #C8102E; } /* UK Red */
+        .filter-pill input[value="eu"].geo-cb:checked + span { background: #FFCC00; color: #000000; border-color: #FFCC00; } /* EU Yellow */
+        .filter-pill input[value="global"].geo-cb:checked + span { background: #6a1b9a; color: #ffffff; border-color: #6a1b9a; } /* Global Purple */
+
+        /* Research Grid & Cards */
+        .research-grid {
+            flex: 1;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+            width: 100%;
+            display: grid;
+            gap: 1rem; 
+            align-items: start;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            background: #ffffff !important;
+            border: 1px solid rgba(0,0,0,0.06) !important;
+            border-radius: 12px !important;
+            padding: 1.15rem !important; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02) !important;
+            position: relative;
+            min-height: auto;
+            color: #1d1d1f !important;
+            overflow: hidden;
+        }
+
+        .card[data-category="notes-and-news"] {
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+            border-color: var(--accent) !important;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+        
+        .meta-left {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        
+        .date-tag {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.7rem;
+        }
+        
+        /* Category Pill Styling - Matches filter styling */
+        .category-tag {
+            padding: 3px 8px !important;
+            border-radius: 12px !important;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: #f5f5f7 !important; 
+            color: var(--primary) !important;
+        }
+        .card[data-category="notes-and-news"] .category-tag { background: #BFD4FF !important; color: #002BA0 !important; }
+        .card[data-category="explainers"] .category-tag { background: #6991FF !important; color: #ffffff !important; }
+        .card[data-category="insights"] .category-tag { background: #0052FF !important; color: #ffffff !important; }
+        .card[data-category="research"] .category-tag { background: #002BA0 !important; color: #ffffff !important; }
+
+        /* Geo Pill Styling - Matches filter styling */
+        .geo-tag {
+            padding: 3px 8px !important;
+            border-radius: 12px !important;
+            font-size: 0.65rem !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .card[data-geo="us"] .geo-tag { background: #002147 !important; color: #ffffff !important; }
+        .card[data-geo="uk"] .geo-tag { background: #C8102E !important; color: #ffffff !important; }
+        .card[data-geo="eu"] .geo-tag { background: #FFCC00 !important; color: #000000 !important; }
+        .card[data-geo="global"] .geo-tag { background: #6a1b9a !important; color: #ffffff !important; }
+
+        .card h2 {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.25;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: #1d1d1f !important;
+        }
+        .tldr {
+            font-size: 0.85rem;
+            color: #515154 !important;
+            line-height: 1.4;
+            margin-bottom: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            max-height: 2.8em;
+            transition: max-height 0.4s ease, margin-bottom 0.4s ease !important;
+            opacity: 1 !important;
+        }
+        .card:hover .tldr {
+            -webkit-line-clamp: 20;
+            max-height: 1200px;
+            margin-bottom: 0.5rem;
+            margin-top: 0 !important;
+        }
+        
+        /* Topic Tags (Uncolored, separated by |) */
+        .tags-container {
+            font-size: 0.7rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0; 
+            margin-top: 0.6rem;
+            border-top: 1px solid rgba(0,0,0,0.05) !important;
+            padding-top: 0.6rem;
+            align-items: center;
+        }
+        
+        .tag-pill {
+            background: transparent !important;
+            color: var(--text-secondary) !important;
+            border: none !important;
+            padding: 0 !important;
+            font-weight: 500 !important;
+        }
+        
+        .tag-pill:not(:last-child)::after {
+            content: ' | ';
+            color: var(--border-color);
+            margin: 0 0.4rem;
+        }
+
+        .card-thumbnail {
+            width: 100%;
+            height: 140px; 
+            background-color: transparent;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: none;
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            mix-blend-mode: darken;
+        }
+        
+        .card:hover .card-thumbnail { transform: scale(1.02); }
+
+
+        /* --- NOTES & NEWS: FULL-CARD VISUAL (COVER STYLE) --- */
+
+        .card[data-category="notes-and-news"] {
+            position: relative;
+            padding: 1.25rem !important;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Pushes the title to the bottom initially */
+            min-height: 240px; /* Matches the approximate height of your normal cards */
+            border: none !important; /* Removes the blue border since the image is the border */
+        }
+
+        /* 1. Make the thumbnail cover the entire card */
+        .card[data-category="notes-and-news"] .card-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            border-radius: 0; /* The main .card border-radius clips it automatically */
+            background-size: cover;
+            z-index: 1;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            mix-blend-mode: normal; /* Override the darken blend mode from the base CSS */
+        }
+
+        /* 2. Add a dark gradient overlay so the text is always readable */
+        .card[data-category="notes-and-news"]::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+            z-index: 2;
+            transition: background 0.4s ease;
+        }
+
+        /* 3. Bring all text content above the image layer */
+        .card[data-category="notes-and-news"] .card-meta,
+        .card[data-category="notes-and-news"] h2,
+        .card[data-category="notes-and-news"] .author-meta,
+        .card[data-category="notes-and-news"] .tldr,
+        .card[data-category="notes-and-news"] .tags-container {
+            position: relative;
+            z-index: 3;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* 4. Style text to contrast with the dark background */
+        .card[data-category="notes-and-news"] h2 {
+            color: #ffffff !important;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-bottom: 0;
+        }
+        .card[data-category="notes-and-news"] .date-tag,
+        .card[data-category="notes-and-news"] .doc-author,
+        .card[data-category="notes-and-news"] .tag-pill {
+            color: #e5e5ea !important;
+        }
+        .card[data-category="notes-and-news"] .tags-container {
+            border-top: 1px solid rgba(255,255,255,0.2) !important; /* Lighter border for tags */
+        }
+
+        /* 5. Hide secondary text in the static state */
+        .card[data-category="notes-and-news"] .author-meta,
+        .card[data-category="notes-and-news"] .tags-container {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+            padding: 0;
+            transition: all 0.4s ease;
+        }
+
+        /* Keep the text completely hidden on the card itself */
+        .card[data-category="notes-and-news"] .tldr {
+            display: none; 
+        }
+
+        /* --- UPDATED HOVER BEHAVIOR --- */
+        .card[data-category="notes-and-news"]:hover::before {
+            background: rgba(0, 0, 0, 0.7); 
+        }
+        .card[data-category="notes-and-news"]:hover .card-thumbnail {
+            transform: scale(1.05);
+        }
+        .card[data-category="notes-and-news"]:hover .author-meta {
+            max-height: 30px; opacity: 1; margin-top: 0.75rem; margin-bottom: 0.25rem;
+        }
+        .card[data-category="notes-and-news"]:hover .tags-container {
+            max-height: 40px; opacity: 1; margin-top: 0.5rem; padding-top: 0.6rem;
+        }
+
+        /* Add a "Read Article" prompt on hover */
+        .card[data-category="notes-and-news"]::after {
+            content: 'Read Article \2192';
+            position: absolute;
+            bottom: -40px;
+            left: 1.25rem;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            z-index: 3;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+        }
+        .card[data-category="notes-and-news"]:hover::after {
+            bottom: 1.25rem;
+            opacity: 1;
+        }
+
+        /* Push the title up slightly to make room for the prompt */
+        .card[data-category="notes-and-news"]:hover .card-meta,
+        .card[data-category="notes-and-news"]:hover h2,
+        .card[data-category="notes-and-news"]:hover .author-meta,
+        .card[data-category="notes-and-news"]:hover .tags-container {
+            transform: translateY(-25px);
+        }
+
+        /* --- READING MODAL STYLES --- */
+        .reading-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .reading-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: var(--bg-color);
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            border-radius: 16px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            background: rgba(0,0,0,0.4);
+            color: white;
+            border: none;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex; justify-content: center; align-items: center;
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: rgba(0,0,0,0.8); }
+
+        .modal-header {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            flex-shrink: 0;
+        }
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%);
+        }
+        .modal-header > * { position: relative; z-index: 2; color: white !important; }
+        .modal-header h2 { font-size: 2rem; margin: 0.5rem 0; line-height: 1.2; }
+
+        /* Keep text at an optimal reading width and center it */
+        .modal-body h3, 
+        .modal-body p, 
+        .modal-body ul {
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Base text styling */
+        .modal-body h3 {
+            color: var(--primary); font-size: 1.35rem; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700;
+        }
+        .modal-body h3:first-child { margin-top: 0; }
+        .modal-body p {
+            font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.25rem;
+        }
+        .modal-body ul {
+            margin-bottom: 1.5rem; padding-left: 1.5rem; font-size: 1.1rem; line-height: 1.6;
+        }
+        .modal-body li { margin-bottom: 0.5rem; }
+
+        /* Let images break out and span the full width of the wider modal */
+        .modal-body img {
+            width: 100%;
+            max-width: 1000px; 
+            height: auto;
+            border-radius: 8px;
+            margin: 3rem auto; /* Added more vertical breathing room */
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.06);
+            display: block;
+        }
+
+        /* Styling for links inside the modal */
+        .modal-body a {
+            color: var(--accent); /* Uses your Coinbase blue */
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom-color 0.2s ease;
+        }
+
+        .modal-body a:hover {
+            border-bottom-color: var(--accent); /* Adds a sleek underline on hover */
+        }
+
+        /* Custom Modal Scrollbar */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: var(--silver-bg); border-radius: 0 16px 16px 0;}
+        .modal-content::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 8px; }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .content-layout { flex-direction: column; }
+            .checkbox-controls {
+                flex: auto !important;
+                width: 100% !important;
+                position: static !important;
+                max-height: none !important;
+            }
+            .subscribe-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1.5rem !important;
+            }
+            .subscribe-form {
+                max-width: 100%;
+                flex: auto;
+                width: 100%;
+            }
+            .subscribe-text p { white-space: normal !important; overflow: visible !important; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .carousel-slide h2 { font-size: 1.6rem; }
+            .carousel-slide { padding: 2rem 1.5rem; }
+            .carousel-controls { right: 1.5rem; bottom: 1.5rem; z-index: 20;}
+            .carousel-indicators { left: 1.5rem; bottom: 2rem; }
+            .checkbox-controls { padding: 1.25rem; }
+            .modal-content { max-height: 100vh; border-radius: 0; }
+        }
+
+        @media (max-width: 600px) {
+            .subscribe-form { flex-direction: column; }
+            .subscribe-form button { padding: 0.85rem !important; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo"><span class="logo-bold">coinbase</span> <span class="logo-light">INSTITUTE</span></a>
+        <nav>
+            <ul>
+                <li><a href="https://www.coinbase.com/public-policy/advocacy/united-states">United States</a></li>
+                <li><a href="https://www.coinbase.com/public-policy/advocacy/international">International</a></li>
+                <li><a href="https://www.coinbase.com/blog/landing/policy">Policy Blog</a></li>
+                <li><a href="https://www.standwithcrypto.org/">Stand with Crypto</a></li>
+                <li><a href="https://www.coinbase.com/">Coinbase</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Reading Modal -->
+    <div class="reading-modal" id="readingModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-header" id="modalHeader"></div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <main>
+        <div class="hero">
+        <div class="hero-glow"></div>
+        <h1>Trusted Policy Insights. Rigorous Research.</h1>
+        <p>The Coinbase Institute is the most trusted source of policy research on the global crypto economy.<br>Our work supports sound policy, advances innovation, and helps promote economic freedom worldwide.</p>
+    </div>
+
+        <div class="carousel-wrapper" id="featuredCarousel">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Slide 1 -->
+                <div class="carousel-slide active">
+                    <span class="category-tag">Featured AI Research</span>
+                    <h2>Machine-to-machine payments in the AiFi era</h2>
+                    <p>The internet is acquiring a second customer: software that retrieves, compares, and increasingly transacts on a person's behalf. These agents do not watch ads or form the durable billing relationships on which online commerce depends. As AI systems crawl to answer rather than to refer, the bargain that financed the open web is breaking down. Publishers, developers, and data providers need a way to charge for each use, including transactions worth a fraction of a cent. This paper explains why legacy payment rails cannot serve that market economically, why stablecoins are the strongest fit available today, and what policymakers should do so that agentic commerce develops on open, interoperable standards rather than inside proprietary marketplaces.</p>
+                    <div class="carousel-inline-image" style="background-image: url('images/image_1.png');"></div>
+                    <a href=" " class="btn">Read the Paper</a>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <span class="category-tag">Emerging Markets Research</span>
+                    <h2>Stablecoins: Opportunities and Challenges for the EMDEs</h2>
+                    <p>Stablecoins are a foundational payment innovation, not just a minor change. For emerging markets and developing economies (EMDEs) the potential payoff is larger than developed economies because frictions that stablecoins can remove are also larger. EMDEs also face distinct risks and challenges in adopting this innovation. This paper maps the opportunity across remittances, agentic commerce, tokenization, smart contracting, and competition in financial markets that could potentially come from a wide adoption of stablecoins; weighs the challenges and risks that come with it; set out a regulatory blueprint to manage these challenges; and closes with country specific analysis of India, Brazil, and Indonesia.</p>
+                    <div class="carousel-inline-image" style="background-image: url('images/image_2.png');"></div>
+                    <a href=" " class="btn">Read the Paper</a>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <span class="category-tag">Featured Research</span>
+                    <h2>From the Unbanked to the Unbrokered: Unlocking Wealth Creation for the World</h2>
+                    <p>For decades, income growth from capital has dramatically outpaced that from labor, but capital ownership remains a privilege of the few. We must bridge this divide by transitioning from the current system that excludes the majority to one that empowers them. The solution lies in technology, not just policy. By harnessing the transformational potential of tokenization and open blockchains, we unlock global markets for billions of savers and those wishing to raise capital. When the barriers of traditional financial infrastructure disappear, access to investment opportunities becomes as normal as owning a phone. This allows ordinary people to finally capture the upside from innovation and economic growth. This is how we narrow the capital chasm and increase economic freedom.</p>
+                    <div class="carousel-inline-image" style="background-image: url('images/image_3.png');"></div>
+                    <a href="https://www.coinbase.com/public-policy/advocacy/documents/from-the-unbanked-to-the-unbrokered" class="btn">Read the Paper</a>
+                </div>
+            </div>
+            
+            <div class="carousel-controls" style="z-index: 20;">
+                <button class="carousel-btn" id="prevBtn" style="pointer-events: auto;">&#8592;</button>
+                <button class="carousel-btn" id="nextBtn" style="pointer-events: auto;">&#8594;</button>
+            </div>
+        </div>
+
+        <div class="subscribe-section">
+            <div class="subscribe-text">
+                <h3>Stay in the know</h3>
+                <p>Trusted policy insights and rigorous crypto research delivered straight to your inbox.</p>
+            </div>
+            <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+        <div class="search-section">
+            <input type="text" id="searchInput" placeholder="Search research, insights, and news...">
+        </div>
+        
+        <div class="content-layout">
+            <div class="checkbox-controls">
+                <div class="filter-group">
+                    <h4>Category</h4>
+                    <div class="checkbox-list">
+                        <label class="filter-pill"><input type="checkbox" value="explainers" class="cat-cb"> <span>Explainers</span></label>
+                        <label class="filter-pill"><input type="checkbox" value="insights" class="cat-cb"> <span>Insights</span></label>
+                        <label class="filter-pill"><input type="checkbox" value="research" class="cat-cb"> <span>Research</span></label>
+                        <label class="filter-pill"><input type="checkbox" value="notes-and-news" class="cat-cb"> <span>Notes & News</span></label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h4>Region</h4>
+                    <div class="checkbox-list">
+                        <label class="filter-pill"><input type="checkbox" value="us" class="geo-cb"> <span>US</span></label>
+                        <label class="filter-pill"><input type="checkbox" value="uk" class="geo-cb"> <span>UK</span></label>
+                        <label class="filter-pill"><input type="checkbox" value="eu" class="geo-cb"> <span>EU</span></label>
+                        <label class="filter-pill"><input type="checkbox" value="global" class="geo-cb"> <span>Global</span></label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h4>Topics</h4>
+                    <div class="checkbox-list">
+                        <label class="filter-pill"><input type="checkbox" value="AI" class="tag-cb"> <span data-tag="AI">AI</span></label><label class="filter-pill"><input type="checkbox" value="Banking" class="tag-cb"> <span data-tag="Banking">Banking</span></label><label class="filter-pill"><input type="checkbox" value="Base" class="tag-cb"> <span data-tag="Base">Base</span></label><label class="filter-pill"><input type="checkbox" value="Bitcoin" class="tag-cb"> <span data-tag="Bitcoin">Bitcoin</span></label><label class="filter-pill"><input type="checkbox" value="Consumer Education" class="tag-cb"> <span data-tag="Consumer Education">Consumer Education</span></label><label class="filter-pill"><input type="checkbox" value="Custody" class="tag-cb"> <span data-tag="Custody">Custody</span></label><label class="filter-pill"><input type="checkbox" value="DeFi" class="tag-cb"> <span data-tag="DeFi">DeFi</span></label><label class="filter-pill"><input type="checkbox" value="Energy" class="tag-cb"> <span data-tag="Energy">Energy</span></label><label class="filter-pill"><input type="checkbox" value="Financial Inclusion" class="tag-cb"> <span data-tag="Financial Inclusion">Financial Inclusion</span></label><label class="filter-pill"><input type="checkbox" value="G20" class="tag-cb"> <span data-tag="G20">G20</span></label><label class="filter-pill"><input type="checkbox" value="Housing" class="tag-cb"> <span data-tag="Housing">Housing</span></label><label class="filter-pill"><input type="checkbox" value="Identity/KYC" class="tag-cb"> <span data-tag="Identity/KYC">Identity/KYC</span></label><label class="filter-pill"><input type="checkbox" value="India" class="tag-cb"> <span data-tag="India">India</span></label><label class="filter-pill"><input type="checkbox" value="Market Structure" class="tag-cb"> <span data-tag="Market Structure">Market Structure</span></label><label class="filter-pill"><input type="checkbox" value="NFTs" class="tag-cb"> <span data-tag="NFTs">NFTs</span></label><label class="filter-pill"><input type="checkbox" value="National Security" class="tag-cb"> <span data-tag="National Security">National Security</span></label><label class="filter-pill"><input type="checkbox" value="Payments" class="tag-cb"> <span data-tag="Payments">Payments</span></label><label class="filter-pill"><input type="checkbox" value="Policy/Regulation" class="tag-cb"> <span data-tag="Policy/Regulation">Policy/Regulation</span></label><label class="filter-pill"><input type="checkbox" value="Privacy" class="tag-cb"> <span data-tag="Privacy">Privacy</span></label><label class="filter-pill"><input type="checkbox" value="Protocols" class="tag-cb"> <span data-tag="Protocols">Protocols</span></label><label class="filter-pill"><input type="checkbox" value="Public Tokens" class="tag-cb"> <span data-tag="Public Tokens">Public Tokens</span></label><label class="filter-pill"><input type="checkbox" value="Quantum" class="tag-cb"> <span data-tag="Quantum">Quantum</span></label><label class="filter-pill"><input type="checkbox" value="Remittances" class="tag-cb"> <span data-tag="Remittances">Remittances</span></label><label class="filter-pill"><input type="checkbox" value="Security Tokens" class="tag-cb"> <span data-tag="Security Tokens">Security Tokens</span></label><label class="filter-pill"><input type="checkbox" value="Settlement" class="tag-cb"> <span data-tag="Settlement">Settlement</span></label><label class="filter-pill"><input type="checkbox" value="Stablecoins" class="tag-cb"> <span data-tag="Stablecoins">Stablecoins</span></label><label class="filter-pill"><input type="checkbox" value="Staking" class="tag-cb"> <span data-tag="Staking">Staking</span></label><label class="filter-pill"><input type="checkbox" value="Systemic Risk" class="tag-cb"> <span data-tag="Systemic Risk">Systemic Risk</span></label><label class="filter-pill"><input type="checkbox" value="Tax" class="tag-cb"> <span data-tag="Tax">Tax</span></label><label class="filter-pill"><input type="checkbox" value="Tokenization" class="tag-cb"> <span data-tag="Tokenization">Tokenization</span></label><label class="filter-pill"><input type="checkbox" value="Wallets" class="tag-cb"> <span data-tag="Wallets">Wallets</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-grid" id="grid">
+
+                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/stablecoins-in-emerging-markets" class="card" data-category="research" data-geo="global" data-tags="defi,tokenization,stablecoins,ai">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Research</span>
+                            <span class="date-tag">Oct 9, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Stablecoins in emerging markets: Opportunities and challenges</h2>
+                    <p class="tldr">Stablecoins are a foundational payment innovation, not an incremental one. For emerging markets and developing economies (EMDEs), the potential payoff is large. EMDEs also face distinct risks and challenges in adopting this innovation. This paper maps the opportunity that wider adoption could bring in agentic commerce, tokenization, smart contracting, cross-border remittances, and competition in financial markets; weighs the risks and challenges that come with it; sets out a regulatory blueprint to manage them; and closes with country-specific analysis of India, Brazil, and Indonesia.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="tokenization">Tokenization</span><span class="tag-pill" data-tag="AI">AI</span><span class="tag-pill" data-tag="stablecoins">Stablecoins</span>
+                    </div>
+                </a>
+
+
+                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/machine-to-machine-payments-in-the-aifi-era" class="card" data-category="research" data-geo="global" data-tags="defi,tokenization,stablecoins,ai">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Research</span>
+                            <span class="date-tag">Oct 7, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Machine-to-machine payments in the AiFi era</h2>
+                    <p class="tldr">The internet is acquiring a second customer: software that retrieves, compares, and increasingly transacts on a person’s behalf. These agents do not watch ads and may have no billing relationship with the services they use. As AI systems crawl to answer rather than to refer, the bargain that financed the open web is breaking down. Publishers, developers, and data providers need a way to charge for each use, including transactions worth a fraction of a cent. This paper explains why legacy payment rails struggle to serve that market economically, why stablecoins on low-cost networks are the strongest fit available today, and how policymakers can help agentic commerce develop on open, interoperable standards rather than inside proprietary marketplaces.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="tokenization">Tokenization</span><span class="tag-pill" data-tag="AI">AI</span><span class="tag-pill" data-tag="stablecoins">Stablecoins</span>
+                    </div>
+                </a>
+
+
+                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/digital-product-passport-onchain" class="card" data-category="explainers" data-geo="eu" data-tags="defi,tokenization,nfts">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Aug 27, 2026</span>
+                        </div>
+                        <span class="geo-tag">EU</span>
+                    </div>
+                    <h2>The Digital Product Passport and Blockchain Technology</h2>
+                    <p class="tldr">The European Union’s Digital Product Passport (DPP) is a mandatory data initiative under the European Green Deal aimed at tracking product provenance, material composition, and sustainability metrics to meet climate goals. To address the architectural challenge of maintaining trustworthy, interoperable data across complex and fragmented global supply chains, blockchain technology serves as a critical, decentralized substrate. By utilizing decentralized identifiers, verifiable credentials, and zero-knowledge proofs, blockchain-based DPPs create a tamper-evident record that allows stakeholders—from manufacturers to regulators—to verify essential product data without exposing sensitive commercial information. With multiple industry pilots already demonstrating scalability and effectiveness, blockchain offers a robust path toward the transparency and circularity required by upcoming EU regulations.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="tokenization">Tokenization</span><span class="tag-pill" data-tag="nfts">NFTs</span>
+                    </div>
+                </a>
+
+
+                <a href="#" class="card" data-category="notes-and-news" data-geo="us" data-tags="stablecoins,banking,payments,systemic risk">
+                    <div class="card-thumbnail" style="background-image: url('images/usdcVScbdeposits.jpeg');"></div>
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Notes & News</span>
+                            <span class="date-tag">Aug 17, 2026</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>Seven years of data (and rewards), but still no substitution</h2>
+                    <div class="author-meta"><span class="doc-type">Visual Analysis</span> <span class="doc-author">Chad Harper</span></div>
+                    
+                    <div class="tldr">
+                        <p>If stablecoins were pulling money out of community banks, this chart would look different. It would show one line climbing while the other sank. Instead, both go up.</p>
+                        <p>Start with the left panel. USDC goes from nothing at its September 2018 launch to roughly $75 billion, and community bank deposits climb from about $1.8 trillion to $2.3 trillion over the same stretch. They move together through the pandemic and through the March 2023 turmoil around SVB, which tells us macro forces push both in the same direction.</p>
+                        <p>The right panel is the one that matters, though. Plot monthly changes in each against the other and the fitted slope comes out at +0.022. Positive. Substitution requires a negative relationship, and after seven years of monthly observations, we cannot find one. Charles River Associates ran hundreds of simulations on the same question in July 2025 and reached the same answer.</p>
+                        <p>So the deposits are still there. Community banks do face genuine pressure, but it comes from a charter pipeline that produced 412 new banks in 1984 and fewer than 100 across all of 2010 through 2024. Banning stablecoin rewards would not add a single charter.</p>
+                        <p>I get that one could argue that substitution WILL still happen. But based on what evidence? What drivers? Let’s talk if you’re seeing something.</p>
+
+                        <img src="images/7_year_view.png" alt="Chart showing USDC vs Community Bank Deposits">
+                    </div>
+
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="Payments">Payments</span><span class="tag-pill" data-tag="Systemic Risk">Systemic Risk</span>
+                    </div>
+                </a>
+
+                <a href="#" class="card" data-category="notes-and-news" data-geo="global" data-tags="bitcoin,wallets">
+                    <div class="card-thumbnail" style="background-image: url('images/coldcard-hack__4_.jpg');"></div>
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Notes & News</span>
+                            <span class="date-tag">Aug 17, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Understanding the 2026 Coldcard Hack</h2>
+                    <div class="author-meta"><span class="doc-type">Notes</span> <span class="doc-author">Sam Shoar</span></div>
+                    
+                    <div class="tldr">
+                        <p>In late July and early August 2026, hackers drained more than $100 million in Bitcoin from thousands of Coldcard wallets. What made the incident so alarming was not just the scale of the theft, but the method: these were offline, air-gapped hardware wallets, and the attackers did not need physical access, phishing links, or conventional malware to break in. Instead, the answer appears to be simple and devastating: the wallets were generating seed phrases from flawed randomness.</p>
+                        
+                        <h3>Why seed phrase randomness matters</h3>
+                        <p>When someone first sets up a hardware wallet, the device creates a seed phrase: a list of 12 to 24 words that serves as the backup for the wallet’s private keys and funds. That phrase is only secure if it is generated from true randomness or entropy. In a proper 24-word setup, the number of possible combinations is so enormous that guessing the correct phrase is effectively impossible, even with vast computing power.</p>
+                        <p>To achieve that level of unpredictability, hardware wallets typically rely on a True Random Number Generator, or TRNG. These dedicated chips use tiny physical sources of chaos to produce randomness that cannot be practically predicted.</p>
+
+                        <h3>What went wrong</h3>
+                        <p>Coldcard reportedly included a high-quality TRNG chip, but the problem was not the chip itself. The failure came from the firmware. A 2021 code update added a safeguard intended to verify that the secure TRNG was active. But because of a syntax error, the check only confirmed that the configuration existed, not that it was actually enabled. In practice, that meant the device could silently bypass the secure randomness chip and fall back to a much weaker software-based method for generating seed phrases.</p>
+                        <p>As a result, the 24-word seed phrases produced by affected devices were not truly random. Instead of facing an unimaginably large universe of possible combinations, attackers were able to focus on a much smaller set of likely seed phrases generated by the faulty logic.</p>
+
+                        <h3>Why this matters beyond Coldcard</h3>
+                        <p>This incident should be a wake-up call for anyone who assumes “offline” automatically means “safe.” Air-gapping protects against many attacks, but it cannot compensate for weak cryptography or broken randomness at the moment a wallet is created.</p>
+                        <p>At the same time, this does not mean all hardware wallets are vulnerable in the same way. Stronger designs follow a defense-in-depth model so that a single bug does not make seed generation guessable. That usually means:</p>
+                        <ul>
+                            <li>Using heavily audited randomness components that meet strict standards</li>
+                            <li>Combining multiple independent sources of entropy</li>
+                            <li>Requiring the device to cryptographically prove that those entropy sources were actually used</li>
+                        </ul>
+
+                        <h3>The bigger lesson</h3>
+                        <p>The Coldcard hack is a reminder that security can fail in invisible ways. A wallet may look physically secure, remain offline, and never touch a phishing link, yet still be fatally compromised if the math underneath it is wrong. In crypto, trust does not come from appearances. It comes from sound engineering, verified randomness, and systems designed to fail safely even when one layer breaks.</p>
+                    </div>
+
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="bitcoin">Bitcoin</span><span class="tag-pill" data-tag="wallet">Wallet</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/default-consumer-protection-for-digital-asset-markets" class="card" data-category="explainers" data-geo="us" data-tags="stablecoins,banking,payments">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Aug 12, 2026</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>CLARITY: Protecting Consumers and Investors</h2>
+                    <p class="tldr">The CLARITY Act replaces "regulation by enforcement" with consumer protection by default, establishing five baseline protections that apply uniformly to every federally regulated digital asset platform: segregation of customer assets, bans on conflicts of interest, mandatory public disclosures, a dedicated retail advocate, and strong identity and anti–money laundering controls to address cyber-theft and scams. Together, they give American consumers a level of safeguard comparable to what they already expect in traditional financial markets.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="Payments">Payments</span>
+                    </div>
+                </a>
+
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/integrating-securities-and-commodities-oversight" class="card" data-category="explainers" data-geo="us" data-tags="stablecoins,banking,payments">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Aug 12, 2026</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>CLARITY: Integrating the Security and Commodity Frameworks</h2>
+                    <p class="tldr">Digital assets evolve. Many begin as securities-like capital raises and mature into decentralized, commodity-like networks, fitting cleanly in neither the securities nor the commodities regime, leaving issuers unsure which regulator applies and investors with uneven protections. The CLARITY Act replaces that static test with a single lifecycle-based framework that defines digital assets at each stage and brings issuers and intermediaries under harmonized SEC–CFTC oversight. Its six core outcomes—lifecycle jurisdiction, a harmonized intermediary perimeter, market integrity protections, a fortified illicit-finance perimeter, developer safe harbors, and sustainable agency funding—aim to deliver regulatory clarity, investor protection, and durable innovation.</p>
+
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="Payments">Payments</span>
+                    </div>
+                </a>
+
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/modernizing-law-enforcement" class="card" data-category="explainers" data-geo="us" data-tags="stablecoins,banking,payments">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Aug 12, 2026</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>CLARITY: Modernizing Tools for Law Enforcement</h2>
+                    <p class="tldr">Regulatory gaps have hindered law enforcement in digital asset markets, pushing responsible firms offshore while bad actors exploit inconsistent rules. The CLARITY Act brings digital asset intermediaries and semi-decentralized protocols firmly under the Bank Secrecy Act and sanctions perimeter, aligning them with traditional financial institutions. It modernizes seizure and forfeiture rules for fast-moving digital assets, extends Treasury's Section 311 authority to onchain activity, and clarifies when platforms can pause suspicious transactions. New structures for information sharing, interagency coordination, kiosk oversight, and decentralized cybersecurity standards aim to make enforcement more timely, targeted, and effective.</p>
+
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="Payments">Payments</span>
+                    </div>
+                </a>
+
+
+                <a href="#" class="card" data-category="notes-and-news" data-geo="global" data-tags="stablecoins,banking,defi,payments,systemic risk">
+                    <div class="card-thumbnail" style="background-image: url('images/payments-consulting-network.png');"></div>
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Notes & News</span>
+                            <span class="date-tag">Nov 14, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>How stablecoins complement banks, transform cross-border payments, and enable the agentic finance age</h2>
+                    <div class="author-meta"><span class="doc-type">Interview</span> <span class="doc-author">Chad Harper</span></div>
+                    
+                    <div class="tldr">
+                        <p>I sat down recently with Mariel Laxamana of Payments Consulting Network for a wide-ranging conversation on how stablecoins, tokenized money, and blockchain rails are reshaping global payments and the future of money movement.</p>
+                        <p>We talked about why, under sound regulatory regimes, stablecoins are a complement to banks—not a drain on deposits—with multiple U.S. studies (Charles River Associates, Cornell’s Will Cong, and the Council of Economic Advisers) finding no meaningful link between stablecoin growth and bank deposits, and how properly regulated stablecoins can help even small community banks offer instant, low-cost, cross-border payments that once required a GSIB’s scale.</p>
+                        <p>Cross-border flows are emerging as the clearest first real-world win, from remittances families are increasingly routing via stablecoins to B2B payments, where regulated stablecoins are today the only form of tokenized money settling across borders at scale.</p>
+                        <p>We also explored the “next customer” of the internet—software agents that browse, compare, and transact on our behalf—and why a long-dormant “Payment Required” status code (HTTP 402) is becoming newly relevant as regulated, dollar-denominated stablecoins on open rails emerge as a natural way to fund machine-to-machine and agentic payments at internet speed.</p>
+                        <p>The throughline is coexistence by design: tokenized central bank reserves, tokenized deposits, and stablecoins each serving the flows they’re best suited for, anchored in full-reserve backing, par redemption, and transparent disclosures. I’m looking forward to continuing this conversation with central bankers and the official sector at the Central Bank Payments Conference 2026 later this month.</p>
+                    </div>
+
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="DeFi">DeFi</span><span class="tag-pill" data-tag="Payments">Payments</span><span class="tag-pill" data-tag="Systemic Risk">Systemic Risk</span>
+                    </div>
+                </a>
+
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/small-banks-and-stablecoins" class="card" data-category="insights" data-geo="us" data-tags="stablecoins,banking,payments">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Jul 15, 2026</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>Small Banks and Stablecoins: Nothing to Fear, Much to Gain</h2>
+                    <p class="tldr">Stablecoins are a once-in-a-generation opportunity for community and regional banks to compete on an equal footing with larger banks on payments and programmable financial services, offering 24/7, low-cost, cross-border money movement and serving as the cash leg for tokenized capital markets. And the widely voiced worry that they will drain local deposits simply doesn't hold up: multiple independent studies and Coinbase's own data find no meaningful link between stablecoin growth and community-bank outflows. As tokenized assets scale, stablecoins are more likely to complement than substitute for a bank’s core services. For small banks, the real story is opportunity.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="Payments">Payments</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/interest-rewards-uk-stablecoins" class="card" data-category="insights" data-geo="uk" data-tags="stablecoins,policy/regulation,uk,banking">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Jun 25, 2026</span>
+                        </div>
+                        <span class="geo-tag">UK</span>
+                    </div>
+                    <h2>Past the point of no returns: Supporting interest and rewards on UK stablecoins</h2>
+                    <p class="tldr">This paper argues that the FCA and Bank of England’s proposed prohibition on offering interest and rewards for UK-regulated stablecoins is misguided and counterproductive, as it suppresses financial innovation while stifling competition in the domestic savings market. Rather than turning stablecoins into high-risk investments, the authors contend that allowing remuneration—consistent with the treatment of other payment instruments like bank accounts—would actually enhance the utility of stablecoins as a store of value, support the UK’s monetary policy transmission, and help secure the international competitiveness of sterling in a global digital asset market.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Policy/Regulation">Policy/Regulation</span><span class="tag-pill" data-tag="UK">UK</span><span class="tag-pill" data-tag="Banking">Banking</span>
+                    </div>
+                </a>
+
+                <a href="#" class="card" data-category="notes-and-news" data-geo="global" data-tags="stablecoins,banking,payments">
+                    <div class="card-thumbnail" style="background-image: url('images/stablecoin_activity_thumb.png');"></div>
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Notes & News</span>
+                            <span class="date-tag">Nov 14, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>How stablecoins complement banks, transform cross-border payments, and enable the agentic finance age</h2>
+                    <div class="author-meta"><span class="doc-type">Interview</span> <span class="doc-author">Chad Harper</span></div>
+                    
+                    <div class="tldr">
+                        <p>Stablecoin-related activity has changed in 2026—2025 was about launching coins; 2026 is about wiring them into settlement infrastructure and buying the companies that do it. We have created an overview tracking stablecoin-related business announcements from July 1st, 2025, through June 10, 2026 using Claude Fable 5. Our count includes i) new stablecoin launches, ii) stablecoin-enabled settlement programs, iii) bank consortia, iv) acquisitions and infrastructure investments, v) product and distribution integrations, and vi) new market entries (i.e. charters, license applications, stablecoin-native company formations). We exclude regulatory consultations, rulemakings, and reports on volumes or flows.</p>
+                        <p>The announcements are categorized by primary function rather than by announcing entity, since the largest players (SoFi, Stripe, Visa) now span bank, fintech, and issuer roles simultaneously. The total of 168 should be read as a floor: coverage is global, but the volume of activity in 2026 makes exhaustive capture unlikely.</p>
+
+                        <img src="images/Screenshot_2026-06-24_at_09.54.10.png" alt="stablecoin relatd activity since july 1, 2025">
+
+                    </div>
+
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="Payments">Payments</span>
+                    </div>
+                </a>
+
+
+                <div class="card" data-category="notes-and-news" data-geo="global" data-tags="stablecoins,banking,defi,payments,systemic risk">
+                    <div class="card-thumbnail" style="background-image: url('images/omfif_pod_thumbnail.png');"></div>
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Notes & News</span>
+                            <span class="date-tag">Jun 18, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Building payment rails for agentic commerce</h2>
+                    <div class="author-meta"><span class="doc-type">Podcast</span> <span class="doc-author">Chad Harper</span></div>
+                    
+                    <div class="tldr">
+                        <p>Agentic commerce has quickly become one of the hottest policy conversations globally — and for good reason. Software agents are starting to discover, decide, and pay on our behalf — surfacing a long list of open policy questions on liability, authorization, agent identity, and how consumer protection frameworks built for humans apply when a machine is the buyer. The pace is striking: in the last six months alone, every major payments player has shipped an agent protocol, and credible 2030 forecasts for agent-driven commerce range from a few hundred billion to tens of trillions of dollars depending on what you count.</p>
+                        <p>Lewis McLellan and I dug into all of it at the end of OMFIF's Digital Money Summit 2026 in London last month, and the conversation is now live on OMFIF's Invested podcast. We covered what agentic commerce actually is (and isn't), why the convergence of capable AI, stablecoins, and open protocols makes this moment different from the shopping-bot era, how to think about the user-experience spectrum from "approve every purchase" to standing mandates, the guardrails users, merchants, and regulators will need, and where x402 — the open Linux Foundation protocol Coinbase co-created with Cloudflare — fits into the broader stack.</p>
+                        <p>Thanks to Lewis, head of content at OMFIF's Digital Monetary Institute, for a sharp and thoughtful conversation.</p>
+                        
+                        <!-- Here is your link, safely tucked inside the modal content! -->
+                        <p><a href="https://omfif.podbean.com/e/building-payments-rails-for-agentic-commerce/" target="_blank">You can listen to the podcast here</a>.</p>
+                    </div>
+
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="DeFi">DeFi</span><span class="tag-pill" data-tag="Payments">Payments</span><span class="tag-pill" data-tag="Systemic Risk">Systemic Risk</span>
+                    </div>
+                </div>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/why-defi-matters" class="card" data-category="insights" data-geo="global" data-tags="identity/kyc,defi,tokenization,policy/regulation,custody">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Jun 12, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Why DeFi Matters: The Case for Open Financial Infrastructure</h2>
+                    <p class="tldr">Decentralized finance (DeFi) applies the internet's open architecture to value, allowing assets to move through open-source protocols, smart contracts, and self-custody wallets without depending on a single intermediary. The result is a financial system with capabilities legacy rails cannot replicate, including: continuous global market access, portable assets that can be used across applications, near-instant final settlement, compliance enforced in the protocol layer, and direct ownership backed by resilient open-source infrastructure. Together, these shifts open meaningful capital markets participation to billions of people—in the U.S. and globally—who today are gated out by account-opening paperwork, geographic distance, and minimum balances. The policy question is how to design a regulatory framework that captures these benefits while concentrating KYC, AML, and sanctions controls at the regulated touchpoints where risk actually sits—minting and redemption, broker-dealer interactions, and the exercise of shareholder rights—rather than at every onchain transfer.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Identity/KYC">Identity/KYC</span><span class="tag-pill" data-tag="DeFi">DeFi</span><span class="tag-pill" data-tag="Tokenization">Tokenization</span><span class="tag-pill" data-tag="Policy/Regulation">Policy/Regulation</span><span class="tag-pill" data-tag="Custody">Custody</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/safety-by-design" class="card" data-category="insights" data-geo="global" data-tags="stablecoins,policy/regulation,banking,national security,payments">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">May 26, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Safety by Design: Why GENIUS Gets Stablecoin Regulation Right</h2>
+                    <p class="tldr">The GENIUS Act proposes a regulatory framework that aligns with the unique risk profile of payment stablecoins, distinguishing them fundamentally from traditional bank deposits. Because stablecoin issuers do not lend money, create new credit, or engage in maturity transformation, the act avoids applying restrictive bank-style regulations that address risks not present in stablecoin operations. Instead, it establishes targeted standards—focusing on full reserve backing, redemption integrity, and operational resilience—to ensure market trust while fostering innovation that strengthens the U.S. dollar's role in the global financial infrastructure.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Policy/Regulation">Policy/Regulation</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="National Security">National Security</span><span class="tag-pill" data-tag="Payments">Payments</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/crypto-quantum" class="card" data-category="explainers" data-geo="global" data-tags="quantum,wallets">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Apr 24, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Crypto and Quantum Computing</h2>
+                    <p class="tldr">A sufficiently powerful quantum computer could one day challenge the cryptography that secures digital assets across major blockchains. Although these machines do not yet exist, there is broad expectation that they will eventually be built—and while many expert timelines point to at least a decade, shorter horizons cannot be ruled out. The practical issue is that upgrading the security of decentralized systems—blockchains, wallets, exchanges, and hardware—takes time. The policy question, therefore, is how to begin a measured transition to quantum-resilient onchain finance now, rather than waiting until the need becomes urgent. That is why industry and academic experts, including those at Coinbase’s Independent Advisory Board on Quantum Computing and Blockchain, are mobilizing around practical solutions, as explained in a detailed new position paper on quantum computing and blockchain that sets out threat scenarios and migration paths for crypto infrastructure.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Quantum">Quantum</span><span class="tag-pill" data-tag="Wallets">Wallets</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/blockchain-infrastructure-for-independent-workers" class="card" data-category="explainers" data-geo="global" data-tags="financial inclusion,payments,banking,settlement,stablecoins">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Apr 9, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Blockchain-Based Financial Infrastructure for Independent Workers</h2>
+                    <p class="tldr">Around the world, a growing share of work now takes place outside traditional payroll systems. App-based workers, freelancers, contractors, and other independent workers often earn income from multiple platforms, clients, or cash-based activities rather than a single employer. In the United States alone, the number of so-called “gig workers” was at least 42 million in 2025. While the flexibility of independent work can expand labor market participation, it also creates significant financial frictions: delayed payments, fragmented earnings histories, difficulty proving income, and limited access to credit and other financial services. But blockchain-based payment and recordkeeping rails offer a potential framework for more portable financial infrastructure—one that allows workers to receive earnings quickly, carry verifiable income records across platforms, and build a stronger foundation for savings, borrowing, and long-term financial inclusion.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Financial Inclusion">Financial Inclusion</span><span class="tag-pill" data-tag="Payments">Payments</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="Settlement">Settlement</span><span class="tag-pill" data-tag="Stablecoins">Stablecoins</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/eu-stablecoin-strategy" class="card" data-category="insights" data-geo="eu" data-tags="stablecoins,eu,policy/regulation,payments,banking">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Apr 5, 2026</span>
+                        </div>
+                        <span class="geo-tag">EU</span>
+                    </div>
+                    <h2>EU Strategy for Euro Stablecoins: Enabling Onchain Capital Markets</h2>
+                    <p class="tldr">Europe faces a critical juncture in the evolution of digital finance, where it must pivot from a cautious approach toward stablecoins to active support for euro-denominated assets to preserve the euro’s global relevance. While often framed as a systemic risk, regulated stablecoins are foundational infrastructure for the future of tokenized capital markets, offering the speed, interoperability, and efficiency that legacy systems lack. To remain competitive, the EU should leverage the existing MiCA framework to foster a robust euro-based ecosystem by allowing more flexible reserve management, revising remuneration rules, and prioritizing cross-border mutual recognition. By treating stablecoins as a strategic opportunity that complements rather than competes with the digital euro, Europe can prevent a reliance on non-euro alternatives and secure its leadership in the next generation of global financial infrastructure.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="EU">EU</span><span class="tag-pill" data-tag="Policy/Regulation">Policy/Regulation</span><span class="tag-pill" data-tag="Payments">Payments</span><span class="tag-pill" data-tag="Banking">Banking</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/tax-policy-for-the-digital-asset-age" class="card" data-category="insights" data-geo="us" data-tags="tax,policy/regulation,stablecoins">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Mar 26, 2026</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>Tax Policy for the Digital Asset Age</h2>
+                    <p class="tldr">Digital assets are rapidly becoming a core part of modern finance—used every day for payments, investments, trading, and a growing range of financial services. Yet the U.S. tax reporting framework has not kept pace, and applying last century’s rules to 21st-century digital markets is leading to predictable and counterproductive results: brokers and taxpayers required to generate vast information with minimal taxable value, regulators inundated with low-signal paperwork, and all parties face rising compliance and administrability burdens in exchange for limited incremental insight for tax authorities. As adoption grows, this mismatch between rules and technology risks distorting economic behavior. The time taxpayers must spend navigating complex reporting requirements effectively functions as a hidden tax on innovation. Targeted reforms that reduce low-signal reporting and focus on higher-value tax information can improve outcomes while creating a system that scales—one where compliance remains practical whether a taxpayer has ten transactions or ten thousand.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Tax">Tax</span><span class="tag-pill" data-tag="Policy/Regulation">Policy/Regulation</span><span class="tag-pill" data-tag="Stablecoins">Stablecoins</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/micro-access-and-micropayments" class="card" data-category="explainers" data-geo="global" data-tags="payments,stablecoins,financial inclusion,settlement,wallets">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Mar 19, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Micro-Access and Micropayments: How x402 Can Expand Participation in the Digital Economy</h2>
+                    <p class="tldr">Much of the internet is structured around a simple constraint: payments are too expensive to be small. Traditional payment systems impose fixed fees and minimum transaction sizes that make it impractical to charge a few cents—or fractions of a cent—for digital services or digital work. As a result, the online economy relies heavily on subscriptions, advertising, and bundled access, while many small economic activities simply never occur. Emerging tools built on crypto infrastructure—particularly stablecoins and the use of the web’s long-dormant “402 Payment Required” status code through the x402 payment pattern—can change that. Together, they enable what might be called micro-access and micropayments: the ability to pay or be paid tiny amounts for precisely the information, service, or task involved. By lowering the minimum economic threshold for transactions, these tools could make it easier for more people to participate in the digital economy.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Payments">Payments</span><span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Financial Inclusion">Financial Inclusion</span><span class="tag-pill" data-tag="Settlement">Settlement</span><span class="tag-pill" data-tag="Wallets">Wallets</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/settlement-finality-onchain" class="card" data-category="insights" data-geo="global" data-tags="settlement,stablecoins">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Feb 25, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Settlement Finality Onchain: A Practical Framework for Policymakers</h2>
+                    <p class="tldr">Settlement finality—the legal moment when a transfer becomes unconditional and irrevocable—lies at the heart of financial stability. When settlement is slow, uncertain, or exposed to after-the-fact reversals, the system must absorb significant credit, liquidity, and operational risks. Traditional finance has spent decades building safeguards around these vulnerabilities, yet settlement delays, collateral burdens, and infrastructure fragilities persist. Blockchains introduce a fundamentally different settlement model. Atomic settlement enforces simultaneous, conditional exchange: either both sides of a transaction execute, or neither does. Combined with rapid, economically enforced finality and 24/7 availability, this architecture eliminates a wide range of risks that regulators and market operators have long been forced to manage. What remains is a regulatory task: determining the moment at which a technically final onchain transaction becomes legally final. This is not a novel challenge. Every major financial system—from Fedwire to ACH to card networks—relies on statutory or regulatory definitions of finality layered atop imperfect operational realities. Blockchain settlement can be treated in precisely the same way.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Settlement">Settlement</span><span class="tag-pill" data-tag="Stablecoins">Stablecoins</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/blockchain-housing-and-financial-inclusion" class="card" data-category="explainers" data-geo="us" data-tags="housing,us,payments,financial inclusion,stablecoins">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Feb 5, 2026</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>Blockchain, Housing, and Financial Inclusion</h2>
+                    <p class="tldr">Property management and mortgage lending in the United States are often still shaped by manual processes, fragmented records, and layers of intermediaries. These inefficiencies drive up costs, slow transactions, and increase the risk of errors or fraud. The burden can fall disproportionately on underbanked households and communities of color, who already face higher barriers to credit, fewer paths to wealth-building, and lower rates of homeownership. But now, blockchain and crypto technologies offer an opportunity to modernize housing finance in ways that improve efficiency while advancing financial inclusion. At their core, these technologies can help create housing and credit systems that are more transparent, portable, and accessible—particularly for Americans whose financial lives do not fit neatly into traditional banking and credit models.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Housing">Housing</span><span class="tag-pill" data-tag="US">US</span><span class="tag-pill" data-tag="Payments">Payments</span><span class="tag-pill" data-tag="Financial Inclusion">Financial Inclusion</span><span class="tag-pill" data-tag="Stablecoins">Stablecoins</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/unlocking-wealth-creation-in-the-us" class="card" data-category="insights" data-geo="us" data-tags="financial inclusion,tokenization,settlement,stablecoins">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Feb 6, 2026</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>Tokenized Capital Markets: Unlocking Wealth Creation in the U.S.</h2>
+                    <p class="tldr">Our new research paper, From the Unbanked to the Unbrokered, highlights a critical wealth gap driven by unequal access to capital markets, where many individuals are "unbrokered" and unable to grow wealth through asset ownership due to high barriers like complex fees and investment minimums. The paper argues that by leveraging tokenization and open public blockchains, the financial industry can democratize market access through fractional ownership, significantly lower transaction costs, and near-instant settlement. This shift offers a scalable solution to modernize financial infrastructure, enabling a future where individuals can easily participate in economic growth and build long-term wealth regardless of their initial investment size.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Financial Inclusion">Financial Inclusion</span><span class="tag-pill" data-tag="Tokenization">Tokenization</span><span class="tag-pill" data-tag="Settlement">Settlement</span><span class="tag-pill" data-tag="Stablecoins">Stablecoins</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/uk-did" class="card" data-category="insights" data-geo="uk" data-tags="identity/kyc,defi,policy/regulation,privacy,uk">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Feb 6, 2026</span>
+                        </div>
+                        <span class="geo-tag">UK</span>
+                    </div>
+                    <h2>The Future of Digital Identity: The Role of Decentralised ID in the UK</h2>
+                    <p class="tldr">Decentralised Identity represents a model for identity management in which individuals, rather than central authorities or major platforms, control their verified credentials. Enabled by cryptographic proofs and decentralised ledgers, decentralised ID (DID) promises increased privacy, portability, and security while reducing dependence on large data-holding intermediaries. While there is well-founded, broader political debate on the merits and challenges of introducing a digital ID system, if the UK Government chooses to pursue digital ID, blockchain technology can address the challenges raised and should be considered as part of the design. As part of the Government’s upcoming consultation on the delivery of digital ID, it should consider decentralised technology (i.e., blockchain) to address the range of privacy, security, single point of failure, and other legitimate concerns raised by digital ID.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Identity/KYC">Identity/KYC</span><span class="tag-pill" data-tag="DeFi">DeFi</span><span class="tag-pill" data-tag="Policy/Regulation">Policy/Regulation</span><span class="tag-pill" data-tag="Privacy">Privacy</span><span class="tag-pill" data-tag="UK">UK</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/from-the-unbanked-to-the-unbrokered" class="card" data-category="research" data-geo="global" data-tags="financial inclusion,tokenization">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Research</span>
+                            <span class="date-tag">Jan 19, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>From the Unbanked to the Unbrokered: Unlocking Wealth Creation for the World</h2>
+                    <p class="tldr">For decades, income growth from capital has dramatically outpaced that from labor, but capital ownership remains a privilege of the few. We must bridge this divide by transitioning from the current system that excludes the majority to one that empowers them. The solution lies in technology, not just policy. By harnessing the transformational potential of tokenization and open blockchains, we unlock global markets for billions of savers and those wishing to raise capital. When the barriers of traditional financial infrastructure disappear, access to investment opportunities becomes as normal as owning a phone. This allows ordinary people to finally capture the upside from innovation and economic growth. This is how we narrow the capital chasm and increase economic freedom.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Financial Inclusion">Financial Inclusion</span><span class="tag-pill" data-tag="Tokenization">Tokenization</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/vertical-integration" class="card" data-category="insights" data-geo="global" data-tags="market structure,policy/regulation,custody,settlement,wallets">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Jan 13, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>The case for vertically-integrated digital asset firms</h2>
+                    <p class="tldr">Vertically-integrated digital asset firms that combine trading, custody, and settlement deliver better customer outcomes by lowering costs and improving user experience, all while reducing credit and settlement risk via prefunding mechanics and real-time, ledger-based settlement. Given these benefits, regulators should primarily supervise outcomes, allowing firms to manage integration risks with proven controls, rather than forcing pre-digital models of strict separation.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Market Structure">Market Structure</span><span class="tag-pill" data-tag="Policy/Regulation">Policy/Regulation</span><span class="tag-pill" data-tag="Custody">Custody</span><span class="tag-pill" data-tag="Settlement">Settlement</span><span class="tag-pill" data-tag="Wallets">Wallets</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/stablecons-and-banking-financial-stability" class="card" data-category="insights" data-geo="global" data-tags="stablecoins,banking,payments,custody,settlement">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Jan 6, 2026</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Stablecoins and Banking: Operational Improvements, Deposit Dynamics, and Financial Stability</h2>
+                    <p class="tldr">Across recent work, the Coinbase Institute has advanced a consistent evidence-based view of stablecoins as a complementary innovation that can enhance bank operations, particularly when subject to prudent safeguards such as full-reserve backing, par redemption, and transparent disclosures. The Institute’s analysis underscores three central points: that stablecoins can expand opportunities for banks to offer faster, more efficient payment services; that well-structured stablecoins pose limited risk to traditional bank deposits; and that, when governed by frameworks like the GENIUS Act, they are compatible with—and can even support—broader financial stability. A recent paper by Professor Lin William Cong provides further support for these positions. In his paper Stablecoins and Banking: Deposit Dynamics, Financial Stability, and Regulatory Design, Cong evaluates deposit dynamics, banking competition, and systemic risk channels under realistic yield environments and prudential design constraints, concluding that well-designed, fully reserved stablecoins can coexist with—and in many cases strengthen—bank intermediation and financial stability.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="Stablecoins">Stablecoins</span><span class="tag-pill" data-tag="Banking">Banking</span><span class="tag-pill" data-tag="Payments">Payments</span><span class="tag-pill" data-tag="Custody">Custody</span><span class="tag-pill" data-tag="Settlement">Settlement</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/crypto-and-public-tokens" class="card" data-category="explainers" data-geo="global" data-tags="public tokens,policy/regulation,tokenization,global,payments">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Nov 20, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Crypto and Public Tokens</h2>
+                    <p class="tldr">Public tokens—cryptographic assets issued by a blockchain or protocol—are one of the most visible aspects of the crypto ecosystem. While not every blockchain or Layer 2 network needs its own token, many choose to issue one as a way to coordinate participants, fund development, and secure the network in an open, transparent manner. These tokens function as both incentives and infrastructure: aligning users, developers, and validators in systems that rely on decentralized consensus rather than centralized control.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="public tokens">Public Tokens</span><span class="tag-pill" data-tag="Policy/Regulation">Policy/Regulation</span><span class="tag-pill" data-tag="Tokenization">Tokenization</span>
+                    </div>
+                </a>
+
+                <a href="https://ctf-images-01.coinbasecdn.net/o10es7wu5gm1/5GBP1ecMnZHg2Q52vEgjuR/11d819ce925e570baaf70d1a4dc55bc6/The_GENIUS_Act_and_Financial_Stability.pdf" class="card" data-category="insights" data-geo="us" data-tags="stablecoins,banking,defi,payments,systemic risk">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Nov 14, 2025</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>The GENIUS Act and Financial Stability</h2>
+                    <p class="tldr">The GENIUS Act of 2025 establishes a comprehensive federal regulatory framework for payment stablecoins by mandating 1:1 full-reserve backing with high-quality liquid assets, ensuring transparent disclosures, and requiring par redemption to mitigate liquidity risks. By distinguishing stablecoins from traditional fractional reserve banking, the Act aims to eliminate inherent credit risks while fostering innovation in digital payments. Supported by potential Federal Reserve access and flexible capital requirements, the legislation positions regulated stablecoins as a safer, more efficient alternative to traditional financial instruments, ultimately reinforcing the U.S. dollar's role in the global economy.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="stablecoins">Stablecoins</span><span class="tag-pill" data-tag="banking">Banking</span><span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="payments">Payments</span><span class="tag-pill" data-tag="systemic risk">Systemic Risk</span>
+                    </div>
+                </a>
+
+                <a href="https://ctf-images-01.coinbasecdn.net/o10es7wu5gm1/4ERbGVQ1erys2bEh5ndxCJ/4c6bcb678fa1c18bda7a9e889cec1534/CBI_GENIUS_Act_interest_rewards.pdf" class="card" data-category="insights" data-geo="us" data-tags="stablecoins,banking,payments,systemic risk">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Nov 12, 2025</span>
+                        </div>
+                        <span class="geo-tag">US</span>
+                    </div>
+                    <h2>The GENIUS Act, Interest, and Rewards</h2>
+                    <p class="tldr">The GENIUS Act, while intended to prevent stablecoin issuers from paying interest on holdings, is being misinterpreted by banking lobbyists to restrict independent businesses from offering legitimate consumer rewards, such as discounts or cashback, when customers use stablecoins for payments. This broad, "indirect interest" interpretation threatens to stifle innovation, reduce consumer choice, and maintain high merchant fees that burden the entire economy. A sensible application of the law should limit prohibitions to issuers only, preserving the freedom for merchants and non-financial entities to incentivize stablecoin usage as a practical payment alternative to traditional credit cards.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="stablecoins">Stablecoins</span><span class="tag-pill" data-tag="banking">Banking</span><span class="tag-pill" data-tag="payments">Payments</span><span class="tag-pill" data-tag="systemic risk">Systemic Risk</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/public-policy/advocacy/documents/crypto-and-agentic-commerce" class="card" data-category="explainers" data-geo="global" data-tags="ai,defi,identity/KYC,payments,wallets">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Nov 12, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Crypto and Agentic Commerce</h2>
+                    <p class="tldr">As crypto and blockchain technologies evolve, a new frontier is emerging: machine-to-machine transactions, autonomous AI agents, and onchain settlement layers that integrate directly into the web. The x402 payment protocol is one such innovation, offering an open standard that lets AI agents, services, and websites define and execute payments seamlessly. For policymakers, x402 represents an opportunity to modernize payment infrastructure, align regulation with emerging economic models, and future-proof financial systems in a digitally native world.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="AI">AI</span><span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="identity/kyc">Identity/KYC</span><span class="tag-pill" data-tag="payments">Payments</span><span class="tag-pill" data-tag="wallets">Wallets</span>
+                    </div>
+                </a>
+
+                <a href="https://ctf-images-01.coinbasecdn.net/o10es7wu5gm1/7lNuNf3O72a5snetQvi5jl/bf1858dd1660f989b34899eb3e4a088b/Stablecoins_and_Bank_Deposits__Overstating_Risk_2.pdf" class="card" data-category="insights" data-geo="global" data-tags="banking,stablecoins,defi,payments">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Oct 29, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Stablecoins and Bank Deposits: Overstating Risk, Overlooking Opportunity</h2>
+                    <p class="tldr">Concerns that stablecoins threaten U.S. bank deposits are misplaced, as these fears overlook how stablecoins are actually used and their role in financial modernization. Rather than destabilizing the banking sector, stablecoins operate largely outside the U.S. retail banking system, catering primarily to global demand for dollar access and onchain liquidity. Their growth mirrors the historical rise of money market funds by introducing necessary competition in payments, driving innovation, and supporting new channels for credit formation that do not depend on traditional bank deposits. Ultimately, stablecoins strengthen the global role of the U.S. dollar and represent a transformative evolution toward a more efficient financial system, rather than a systemic risk.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="banking">Banking</span><span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="stablecoins">Stablecoins</span><span class="tag-pill" data-tag="payments">Payments</span><span class="tag-pill" data-tag="wallets">Wallets</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/what-are-nfts" class="card" data-category="explainers" data-geo="global" data-tags="defi,nfts,tokenization,identity/kyc">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainers</span>
+                            <span class="date-tag">Oct 26, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>What are NFTs?</h2>
+                    <p class="tldr">Blockchain technology has opened new ways to record and exchange ownership, trust, and value online. Originally designed to support digital currencies, its applications now extend into areas that include decentralized finance, supply chains, and digital identity. Among its most visible innovations are non-fungible tokens (NFTs)—unique digital assets that use blockchain to prove ownership and authenticity. NFTs combine cryptography, smart contracts, and digital records to make digital items verifiable, tradable, and programmable. While the early spotlight was on digital art, NFTs now underpin use cases ranging from fractional investments to insurance and real-world asset tracking.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="nfts">NFTs</span><span class="tag-pill" data-tag="tokenization">Tokenization</span><span class="tag-pill" data-tag="identity/kyc">Identity/KYC</span>
+                    </div>
+                </a>
+
+                <a href="https://ctf-images-01.coinbasecdn.net/o10es7wu5gm1/4AzxMLmPCBvOSPDV1IEAII/1a361fcc151d2d0ef109b8d81169a1fe/Let%C3%A2__s_embrace_stablecoins_and_achieve_the_goals_of_the_G20_Cross-border_Payments_Roadmap__1_.pdf" class="card" data-category="insights" data-geo="global" data-tags="payments,stablecoins">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Oct 12, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Let's embrace stablecoins and achieve the goals of the G20 Cross-border Payments Roadmap</h2>
+                    <p class="tldr">The G20's cross-border payment reform is falling short-costs remain high and transactions slow-because legacy banking systems can't meet the 2027 targets. Stablecoins, however, already deliver faster, cheaper, and more transparent payments, as shown by Stanford research where most transactions settled in minutes at lower costs. Policymakers should embrace stablecoins rather than treat them as peripheral risks. Stablecoins work. It is time to say so formally and build policy frameworks that accelerate their role in transforming cross-border payments.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="payments">Payments</span><span class="tag-pill" data-tag="stablecoins">Stablecoins</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/crypto-and-onchain-lending" class="card" data-category="explainers" data-geo="global" data-tags="defi,banking,identity/kyc,base,payments">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Oct 10, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>Crypto and Onchain Lending</h2>
+                    <p class="tldr">Blockchain technology has transformed the way financial systems can record, verify, and exchange value without traditional intermediaries. Among its most compelling applications is onchain lending—a decentralized model in which loans are originated, collateralized, and repaid entirely through blockchain-based smart contracts rather than banks or broker-dealers. By replacing institutional trust with verifiable code, onchain lending introduces a transparent and programmable alternative to conventional credit markets. While this new system is still evolving, it demonstrates how financial intermediation can be made more accessible, efficient, and globally inclusive.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="banking">Banking</span><span class="tag-pill" data-tag="identity/kyc">Identity/KYC</span><span class="tag-pill" data-tag="base">Base</span><span class="tag-pill" data-tag="payments">Payments</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/what-are-protocols" class="card" data-category="explainers" data-geo="global" data-tags="protocols,defi,payments,settlement">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Oct 6, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>What are Protocols?</h2>
+                    <p class="tldr">In traditional finance, rules and standards are often set by institutions, regulators, and intermediaries. In the world of crypto and blockchain, those rules are written directly into code. These sets of rules are called protocols, and they define how networks operate, how participants interact, and how transactions are validated and recorded. Protocols are the backbone of decentralized systems, creating predictable, transparent, and automated frameworks that allow for innovation at scale without relying on centralized authorities.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="protocols">Protocols</span><span class="tag-pill" data-tag="payments">Payments</span><span class="tag-pill" data-tag="settlement">Settlement</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/what-are-gas-fees" class="card" data-category="explainers" data-geo="global" data-tags="defi,payments,nfts,protocols">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Explainer</span>
+                            <span class="date-tag">Sep 27, 2025</span>
+                        </div>
+                        <span class="geo-tag">Global</span>
+                    </div>
+                    <h2>What are Gas Fees?</h2>
+                    <p class="tldr">Every blockchain transaction—whether sending tokens, executing a smart contract, or minting a digital asset—requires a payment known as a gas fee. Gas fees are not just technical costs; they are the backbone of blockchain economics, aligning incentives for network participants and ensuring fair and legitimate use of the network. For policymakers and industry leaders, understanding how gas fees function is critical for evaluating both the efficiency and accessibility of blockchain systems.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="protocols">Protocols</span><span class="tag-pill" data-tag="payments">Payments</span><span class="tag-pill" data-tag="nfts">NFTs</span>
+                    </div>
+                </a>
+
+                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/building-the-eus-onchain-capital-markets" class="card" data-category="insights" data-geo="eu" data-tags="defi,custody,financial inclusion">
+                    <div class="card-meta">
+                        <div class="meta-left">
+                            <span class="category-tag">Insights</span>
+                            <span class="date-tag">Sep 16, 2025</span>
+                        </div>
+                        <span class="geo-tag">EU</span>
+                    </div>
+                    <h2>Building the EU's Onchain Capital Markets</h2>
+                    <p class="tldr">To stay globally competitive, the EU must move its capital markets onchain - embracing permissionless blockchains, decentralized finance, and regulated stablecoins - to enable faster cheaper, more open and resilient financial market infrastructure.</p>
+                    <div class="tags-container">
+                        <span class="tag-pill" data-tag="defi">DeFi</span><span class="tag-pill" data-tag="custody">Custody</span><span class="tag-pill" data-tag="financial inclusion">Financial Inclusion</span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Coinbase Institute. This site is a conceptual template.</p>
+    </footer>
+
+    <script>
+// Advanced Carousel Logic - Infinite Loop & Longer Duration
+        const track = document.getElementById('carouselTrack');
+        let slides = document.querySelectorAll('.carousel-slide');
+        const wrapper = document.getElementById('featuredCarousel');
+        const nextBtn = wrapper.querySelector('#nextBtn');
+        const prevBtn = wrapper.querySelector('#prevBtn');
+        
+        // 1. Clone the first and last slides to create a seamless infinite loop
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+        
+        firstClone.id = 'first-clone';
+        lastClone.id = 'last-clone';
+        
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, slides[0]);
+        
+        // Re-select slides now that clones are added
+        slides = document.querySelectorAll('.carousel-slide');
+        
+        // Start at index 1 because index 0 is now the clone of the last slide
+        let currentIndex = 1; 
+        let isTransitioning = false;
+
+        // Shift track to show the first real slide
+        track.style.transition = 'none';
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        // 2. Setup Indicators based on the original number of slides
+        const existingIndicators = document.querySelector('.carousel-indicators');
+        if (existingIndicators) existingIndicators.remove();
+
+        const indicatorsContainer = document.createElement('div');
+        indicatorsContainer.className = 'carousel-indicators';
+        const originalCount = slides.length - 2; // Subtract the 2 clones
+        
+        for(let i = 0; i < originalCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'indicator' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => {
+                if(isTransitioning) return;
+                goToSlide(i + 1); // Offset by 1 for the clone
+            });
+            indicatorsContainer.appendChild(dot);
+        }
+        wrapper.appendChild(indicatorsContainer);
+        const indicators = document.querySelectorAll('.indicator');
+
+        function updateIndicators() {
+            // Map the current track index back to the indicator dots
+            let activeIndex = currentIndex - 1;
+            if (currentIndex === 0) activeIndex = originalCount - 1;
+            if (currentIndex === slides.length - 1) activeIndex = 0;
+            
+            indicators.forEach((dot, i) => {
+                dot.classList.toggle('active', i === activeIndex);
+            });
+            
+            // 1. Remove the active class from all slides
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+            });
+            
+            // 2. Add it to the current slide
+            slides[currentIndex].classList.add('active');
+            
+            // 3. PREVENT TEXT GLITCH: If we are on a clone, animate the real slide simultaneously 
+            // so the text is fully visible the moment the carousel silently snaps back
+            if (slides[currentIndex].id === 'first-clone') {
+                slides[1].classList.add('active');
+            } else if (slides[currentIndex].id === 'last-clone') {
+                slides[slides.length - 2].classList.add('active');
+            }
+        }
+
+        function nextSlide() {
+            if (isTransitioning) return;
+            track.style.transition = 'transform 0.5s ease-in-out';
+            currentIndex++;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateIndicators();
+        }
+
+        function prevSlide() {
+            if (isTransitioning) return;
+            track.style.transition = 'transform 0.5s ease-in-out';
+            currentIndex--;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateIndicators();
+        }
+
+        // 3. The magic trick: silently snap back when hitting a clone
+        track.addEventListener('transitionstart', () => {
+            isTransitioning = true;
+        });
+
+        track.addEventListener('transitionend', () => {
+            isTransitioning = false;
+            
+            if (slides[currentIndex].id === 'first-clone') {
+                track.style.transition = 'none'; // Turn off animation instantly
+                currentIndex = 1; // Jump back to real first slide
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            
+            if (slides[currentIndex].id === 'last-clone') {
+                track.style.transition = 'none'; // Turn off animation instantly
+                currentIndex = slides.length - 2; // Jump back to real last slide
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+        });
+
+        // 4. Timer setup
+        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
+        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
+
+        let slideInterval;
+        function startInterval() {
+            clearInterval(slideInterval); // Add this line to prevent overlapping timers!
+            slideInterval = setInterval(nextSlide, 25000); 
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        wrapper.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        wrapper.addEventListener('mouseleave', startInterval);
+
+        // Initialize
+        slides[currentIndex].classList.add('active');
+        startInterval();
+        
+        const catCbs = document.querySelectorAll('.cat-cb');
+        const geoCbs = document.querySelectorAll('.geo-cb');
+        const tagCbs = document.querySelectorAll('.tag-cb');
+        const cards = document.querySelectorAll('.card');
+        const searchInput = document.getElementById('searchInput');
+
+        function filterCards() {
+            const selectedCats = Array.from(catCbs).filter(cb => cb.checked).map(cb => cb.value);
+            const selectedGeos = Array.from(geoCbs).filter(cb => cb.checked).map(cb => cb.value);
+            const selectedTags = Array.from(tagCbs).filter(cb => cb.checked).map(cb => cb.value.toLowerCase());
+            const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
+
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category') || '';
+                const cardGeo = card.getAttribute('data-geo') || '';
+                const tagsAttr = card.getAttribute('data-tags');
+                const cardTags = tagsAttr ? tagsAttr.split(',') : [];
+                
+                const titleEl = card.querySelector('h2');
+                const descEl = card.querySelector('.tldr');
+                const cardTitle = titleEl ? titleEl.textContent.toLowerCase() : '';
+                const cardDesc = descEl ? descEl.textContent.toLowerCase() : '';
+
+                const matchCat = selectedCats.length === 0 || selectedCats.includes(cardCat);
+                const matchGeo = selectedGeos.length === 0 || selectedGeos.includes(cardGeo);
+                const matchTag = selectedTags.length === 0 || selectedTags.some(t => cardTags.includes(t));
+                const matchSearch = searchQuery === '' || cardTitle.includes(searchQuery) || cardDesc.includes(searchQuery);
+
+                if (matchCat && matchGeo && matchTag && matchSearch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        [...catCbs, ...geoCbs, ...tagCbs].forEach(cb => cb.addEventListener('change', filterCards));
+        if (searchInput) {
+            searchInput.addEventListener('input', filterCards);
+        }
+
+        // --- READING MODAL LOGIC ---
+        const modal = document.getElementById('readingModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalHeader = document.getElementById('modalHeader');
+        const modalBody = document.getElementById('modalBody');
+
+        document.querySelectorAll('.card[data-category="notes-and-news"]').forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault(); // Stop the card from navigating away
+                
+                // Extract content from the clicked card
+                const title = this.querySelector('h2').innerHTML;
+                const meta = this.querySelector('.card-meta').innerHTML;
+                const author = this.querySelector('.author-meta') ? this.querySelector('.author-meta').innerHTML : '';
+                const content = this.querySelector('.tldr').innerHTML;
+                const bgImage = this.querySelector('.card-thumbnail').style.backgroundImage;
+
+                // Populate the Modal
+                modalHeader.style.backgroundImage = bgImage;
+                modalHeader.innerHTML = `
+                    <div class="card-meta" style="margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; display: flex; justify-content: space-between; align-items: center;">${meta}</div>
+                    <h2>${title}</h2>
+                    <div class="author-meta" style="margin-top:0.75rem; display:flex; gap:0.5rem; align-items:center; font-weight: 500; font-size: 0.9rem;">${author}</div>
+                `;
+                modalBody.innerHTML = content;
+
+                // Show Modal and lock background scrolling
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            });
+        });
+
+        // Close the modal when the "X" is clicked
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore background scrolling
+        });
+
+        // Close the modal if the user clicks in the dark background outside the white box
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
