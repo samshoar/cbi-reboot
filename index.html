@@ -1020,7 +1020,7 @@
                     <h2>Machine-to-machine payments in the AiFi era</h2>
                     <p>The internet is acquiring a second customer: software that retrieves, compares, and increasingly transacts on a person's behalf. These agents do not watch ads or form the durable billing relationships on which online commerce depends. As AI systems crawl to answer rather than to refer, the bargain that financed the open web is breaking down. Publishers, developers, and data providers need a way to charge for each use, including transactions worth a fraction of a cent. This paper explains why legacy payment rails cannot serve that market economically, why stablecoins are the strongest fit available today, and what policymakers should do so that agentic commerce develops on open, interoperable standards rather than inside proprietary marketplaces.</p>
                     <div class="carousel-inline-image" style="background-image: url('images/image_1.png');"></div>
-                    <a href=" " class="btn">Read the Paper</a>
+                    <a href="machine-to-machine-payments.html" class="btn">Explore the Research</a>
                 </div>
 
                 <!-- Slide 2 -->
@@ -1029,7 +1029,7 @@
                     <h2>Stablecoins: Opportunities and Challenges for the EMDEs</h2>
                     <p>Stablecoins are a foundational payment innovation, not just a minor change. For emerging markets and developing economies (EMDEs) the potential payoff is larger than developed economies because frictions that stablecoins can remove are also larger. EMDEs also face distinct risks and challenges in adopting this innovation. This paper maps the opportunity across remittances, agentic commerce, tokenization, smart contracting, and competition in financial markets that could potentially come from a wide adoption of stablecoins; weighs the challenges and risks that come with it; set out a regulatory blueprint to manage these challenges; and closes with country specific analysis of India, Brazil, and Indonesia.</p>
                     <div class="carousel-inline-image" style="background-image: url('images/image_2.png');"></div>
-                    <a href=" " class="btn">Read the Paper</a>
+                    <a href="stablecoins-emerging-markets.html" class="btn">Explore the Research</a>
                 </div>
 
                 <!-- Slide 3 -->
@@ -1096,7 +1096,7 @@
 
             <div class="research-grid" id="grid">
 
-                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/stablecoins-in-emerging-markets" class="card" data-category="research" data-geo="global" data-tags="defi,tokenization,stablecoins,ai">
+                <a href="stablecoins-emerging-markets.html" class="card" data-category="research" data-geo="global" data-tags="defi,tokenization,stablecoins,ai">
                     <div class="card-meta">
                         <div class="meta-left">
                             <span class="category-tag">Research</span>
@@ -1112,7 +1112,7 @@
                 </a>
 
 
-                <a href="https://www.coinbase.com/en-de/public-policy/advocacy/documents/machine-to-machine-payments-in-the-aifi-era" class="card" data-category="research" data-geo="global" data-tags="defi,tokenization,stablecoins,ai">
+                <a href="machine-to-machine-payments.html" class="card" data-category="research" data-geo="global" data-tags="defi,tokenization,stablecoins,ai">
                     <div class="card-meta">
                         <div class="meta-left">
                             <span class="category-tag">Research</span>
@@ -1674,7 +1674,7 @@
                     <div class="card-meta">
                         <div class="meta-left">
                             <span class="category-tag">Insights</span>
-                            <span class="date-tag">Oct 12, 2025</span>
+                            <span class="date-tag">Oct 14, 2025</span>
                         </div>
                         <span class="geo-tag">Global</span>
                     </div>
@@ -1753,6 +1753,7 @@
         <p>&copy; 2026 Coinbase Institute. This site is a conceptual template.</p>
     </footer>
 
+    <script src="research-archive.js"></script>
     <script>
         const mobileLayout = window.matchMedia('(max-width: 768px)');
         const filterLayout = window.matchMedia('(max-width: 900px)');
@@ -1847,20 +1848,37 @@
             }
         }
 
-        function syncSlideSize() { track.style.height = mobileLayout.matches ? `${slides[currentIndex].offsetHeight}px` : ''; }
+        function syncSlideSize() {
+            wrapper.classList.toggle('summary-expanded', slides[currentIndex].querySelector('p').classList.contains('is-expanded'));
+            wrapper.style.setProperty('--featured-top', `${wrapper.getBoundingClientRect().top + window.scrollY}px`);
+            track.style.height = `${slides[currentIndex].offsetHeight}px`;
+        }
         slides.forEach((slide, index) => {
             const paragraph = slide.querySelector('p'); paragraph.id = `featured-summary-${index}`;
             const toggle = document.createElement('button');
             toggle.type = 'button'; toggle.className = 'summary-toggle'; toggle.textContent = 'Read summary';
             toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-controls', paragraph.id);
+            paragraph.inert = mobileLayout.matches;
             toggle.addEventListener('click', () => {
                 const expanded = paragraph.classList.toggle('is-expanded'); toggle.setAttribute('aria-expanded', String(expanded));
+                paragraph.inert = mobileLayout.matches && !expanded;
                 toggle.textContent = expanded ? 'Less summary' : 'Read summary'; syncSlideSize();
             });
             paragraph.after(toggle); slide.inert = index !== currentIndex;
         });
         const slideObserver = new ResizeObserver(syncSlideSize); slides.forEach(slide => slideObserver.observe(slide));
-        mobileLayout.addEventListener('change', () => { syncSlideSize(); resetInterval(); });
+        const featuredLayoutObserver = new ResizeObserver(syncSlideSize);
+        featuredLayoutObserver.observe(document.querySelector('header'));
+        featuredLayoutObserver.observe(document.querySelector('.hero'));
+        window.addEventListener('resize', syncSlideSize);
+        document.fonts.ready.then(syncSlideSize);
+        mobileLayout.addEventListener('change', () => {
+            slides.forEach(slide => {
+                const paragraph = slide.querySelector('p');
+                paragraph.inert = mobileLayout.matches && !paragraph.classList.contains('is-expanded');
+            });
+            syncSlideSize(); resetInterval();
+        });
         let touchStart;
         track.addEventListener('touchstart', event => { touchStart = event.touches.length === 1 ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : null; }, { passive: true });
         track.addEventListener('touchend', event => {
@@ -1949,7 +1967,7 @@
                 const cardCat = card.getAttribute('data-category') || '';
                 const cardGeo = card.getAttribute('data-geo') || '';
                 const tagsAttr = card.getAttribute('data-tags');
-                const cardTags = tagsAttr ? tagsAttr.split(',') : [];
+                const cardTags = tagsAttr ? tagsAttr.toLowerCase().split(',').map(tag => tag.trim()) : [];
                 
                 const titleEl = card.querySelector('h2');
                 const descEl = card.querySelector('.tldr');
