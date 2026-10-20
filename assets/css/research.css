@@ -22,3 +22,9 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0b1838;color:#d4e6ff
 @media(max-width:1100px){.site-header{flex-wrap:wrap;gap:12px}.site-header ul{flex-wrap:wrap;gap:8px 20px}}
 @media(max-width:768px){.site-header{padding:12px 16px;gap:8px}.site-header .brand strong{font-size:clamp(1.25rem,5vw,1.75rem)}.site-header .brand span{font-size:clamp(.875rem,3.6vw,1.25rem)}.menu-toggle{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:8px;border:1px solid #e5e5ea;background:white}.site-header nav{display:none;width:100%}.site-header nav.is-open{display:block}.site-header ul{flex-direction:column;gap:0}.site-header nav a{display:block;padding:12px 0;min-height:44px}.research-download{padding:0 18px;margin-top:18px}}
 @media print{.site-header nav,.menu-toggle,.research-download{display:none}}
+/* Research return navigation is a distinct callout above the article metadata. */
+main > a[href="index.html"]{display:table;background:#0052FF;color:#fff;border-radius:8px;padding:10px 18px;min-height:44px;text-decoration:none;font-weight:700;margin-bottom:32px}
+main > a[href="index.html"]:hover{background:#1554F0}
+.download{background:#07297C}.download .button{color:#07297C}
+.bar.secondary{background:#99B0F3}pre{background:#1D2238;color:#fff}
+@media print{.download{background:white;color:#111}.download .button{color:#111}}
