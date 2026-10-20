@@ -20,15 +20,15 @@
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'card-summary-toggle';
-        button.textContent = 'TL;DR';
+        button.textContent = 'Expand TL;DR';
         button.setAttribute('aria-expanded', 'false');
         button.setAttribute('aria-controls', summary.id);
-        button.setAttribute('aria-label', `Show summary: ${heading.textContent}`);
+        button.setAttribute('aria-label', `Expand TL;DR: ${heading.textContent}`);
         button.addEventListener('click', () => {
             const open = card.classList.toggle('is-summary-open');
             button.setAttribute('aria-expanded', String(open));
-            button.textContent = open ? 'Hide TL;DR' : 'TL;DR';
-            button.setAttribute('aria-label', `${open ? 'Hide' : 'Show'} summary: ${heading.textContent}`);
+            button.textContent = open ? 'Show less' : 'Expand TL;DR';
+            button.setAttribute('aria-label', `${open ? 'Show less' : 'Expand TL;DR'}: ${heading.textContent}`);
         });
         summary.after(button);
         link.replaceWith(card);
