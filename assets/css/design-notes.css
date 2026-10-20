@@ -1,4 +1,4 @@
-/* October 19 design review. Coinbase blues; neutral international region labels. */
+/* October design review. Coinbase blues; consistent blue region labels. */
 :root{--accent:#0052FF}
 .hero h1{font-size:clamp(2rem,3.5vw,3rem)!important;line-height:1.12!important}
 .hero p{font-size:1.15rem!important;line-height:1.55;max-width:960px!important}
@@ -15,9 +15,7 @@
 .card[data-category="notes-and-news"]::after{position:relative;bottom:auto!important;left:auto;opacity:1;margin-top:.75rem}
 .card[data-category="notes-and-news"] .card-meta,.card[data-category="notes-and-news"] h2{transform:none!important}
 .card[data-category="notes-and-news"]:hover .card-thumbnail{transform:none}
-.card[data-geo="eu"] .geo-tag,.card[data-geo="uk"] .geo-tag,.card[data-geo="global"] .geo-tag,
-.filter-pill input.geo-cb:not([value="us"]):checked + span{background:#e5e5ea!important;color:#42454b!important;border-color:#e5e5ea}
-.card[data-geo="us"] .geo-tag,.filter-pill input.geo-cb[value="us"]:checked + span{background:#07297C!important;color:#fff!important}
+.card[data-geo] .geo-tag,.filter-pill input.geo-cb:checked + span{background:#07297C!important;color:#fff!important;border-color:#07297C}
 .card[data-category="notes-and-news"] .category-tag,.filter-pill input[value="notes-and-news"]:checked + span{background:#99B0F3!important;color:#011082!important;border-color:#99B0F3}
 .card[data-category="research"] .category-tag,.filter-pill input[value="research"]:checked + span{background:#07297C!important;color:#fff!important;border-color:#07297C}
 .carousel-slide a.btn:hover{background:#1554F0!important}
