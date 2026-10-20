@@ -28,3 +28,6 @@ main > a[href="index.html"]:hover{background:#1554F0}
 .download{background:#07297C}.download .button{color:#07297C}
 .bar.secondary{background:#99B0F3}pre{background:#1D2238;color:#fff}
 @media print{.download{background:white;color:#111}.download .button{color:#111}}
+/* Shared row: return action left, PDF action right. */
+.research-download{justify-content:space-between;align-items:center;gap:12px}.research-download .button{white-space:nowrap}.research-download + main{padding-top:32px}
+@media(max-width:400px){.research-download{gap:8px}.research-download .button{padding:10px 12px;font-size:14px}}
